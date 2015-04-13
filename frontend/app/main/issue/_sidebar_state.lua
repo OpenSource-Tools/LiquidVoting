@@ -13,16 +13,7 @@ else
   view_id = issue.id
 end
 
-ui.sidebar( "tab-whatcanido", function()
-
-  ui.sidebarHead( function()
-    ui.heading{ level = 2, content = function()
-      ui.link{ 
-        content = issue.name,
-        module = "issue", view = "show", id = issue.id
-      }
-    end }
-  end )
+ui.sidebar( "phases", function()
 
   local current_occured = false
   local failed = false
@@ -41,69 +32,64 @@ ui.sidebar( "tab-whatcanido", function()
         or (state == "voting" and issue.closed and issue.state ~= "canceled_no_initiative_admitted" and issue.state ~= "canceled_by_admin")
     )
     
-    if not failed then
-      ui.link{ attr = {
-        onclick = "$('#phase-help-" .. state .. "').toggle();return false;",
-        class = "sidebarRow sidebarRowNarrow",
-      }, content = function()
+    local state_names = {
+      admission = _"Admission",
+      discussion = _"Discussion",
+      verification = _"Verification",
+      voting = _"Voting"
+    }
+    local state_name = state_names[state] or state
+    local function quorum_text(policy, quorum)
+      local num
+      local den
       
-        local state_names = {
-          admission = _"Admission",
-          discussion = _"Discussion",
-          verification = _"Verification",
-          voting = _"Voting"
-        }
-        
-        local state_name = "(" .. i .. ") " .. state_names[state] or state
+      if quorum == 1 then
+        num = policy.issue_quorum_num
+        den = policy.issue_quorum_den
+      elseif quorum == 2 then
+        num = policy.initiative_quorum_num
+        den = policy.initiative_quorum_den
+      end
+      
+      if num == nil or den == nil then
+        return 0
+      end
+      
+      if den == 100 or den == 10 then
+        return _("#{percentage}%", { percentage = num * 100 / den })
+      else
+        return num .. "/" .. den
+      end
+      
+    end
 
-        local function quorum_text(policy, quorum)
-          local num
-          local den
-          
-          if quorum == 1 then
-            num = policy.issue_quorum_num
-            den = policy.issue_quorum_den
-          elseif quorum == 2 then
-            num = policy.initiative_quorum_num
-            den = policy.initiative_quorum_den
-          end
-          
-          if num == nil or den == nil then
-            return 0
-          end
-          
-          if den == 100 or den == 10 then
-            return _("#{percentage}%", { percentage = num * 100 / den })
-          else
-            return num .. "/" .. den
-          end
-          
-        end
-        
+    if not failed then
+
+      local klass = ""
+      if current then klass = klass .. "current" end
+      if not current and not current_occured and phase_success and not quorum and (quorum ~= 0) then
+        klass = klass .. "finished"
+      end
+
+      ui.link{ attr = {
+              class = klass
+      }, content = function()
         local quorum
-        if state == "admission" then
-          quorum = quorum_text(issue.policy, 1)
-        elseif state == "verification" then
-          quorum = quorum_text(issue.policy, 2)
+        if state == "admission" then        quorum = quorum_text(issue.policy, 1)
+        elseif state == "verification" then quorum = quorum_text(issue.policy, 2)
         end
-
         if current then
           local time_left
-          if issue.state_time_left:sub(1,1) ~= "-" then
-            time_left = format.interval_text(issue.state_time_left, { mode = "time_left" })
-          else
-            time_left = "phase ends soon"
+          if issue.state_time_left:sub(1,1) ~= "-" then time_left = format.interval_text(issue.state_time_left, { mode = "time_left" })
+          else                                          time_left = "phase ends soon"
           end
-          
-          ui.tag{ attr = { class = "right" },
-            content = time_left
+          ui.container{ attr = { class = "time event_time" },
+            content = issue.end_time
           }
         elseif current_occured then
           local phase_duration = issue[state .. "_time"]
-          ui.tag{ attr = { class = "right" },
-            content = _("#{duration}", {
-              duration = format.interval_text(phase_duration)
-            } )
+          ui.container{ attr = { class = "time" },
+            content = _("#{duration}", { duration = format.interval_text(phase_duration) } )
           }
         else
           local text = "failed"
@@ -126,24 +112,27 @@ ui.sidebar( "tab-whatcanido", function()
           elseif issue.state == "canceled_by_admin" then
             text = _"canceled"
           end
-          
-          ui.tag{ attr = { class = "right" },
+          ui.container{ attr = { class = "status" },
             content = text
           }
         end
 
-        ui.heading{ level = 3, content = function()
-          if current then
-            ui.image{ attr = { class = "icon16" }, static = "icons/32/phase_current.png" }
-          elseif not current_occured and not phase_success then
-            ui.image{ attr = { class = "icon16" }, static = "icons/32/phase_failed.png" }
-          elseif current_occured then
-            ui.image{ attr = { class = "icon16" }, static = "icons/32/empty.png" }
-          else
-            ui.image{ attr = { class = "icon16" }, static = "icons/32/phase_finished.png" }
-          end
+        ui.tag{ content = function()
+          -- if current then
+          --   ui.image{ attr = { class = "icon16" }, static = "icons/32/phase_current.png" }
+          -- elseif not current_occured and not phase_success then
+          --   ui.image{ attr = { class = "icon16" }, static = "icons/32/phase_failed.png" }
+          -- elseif current_occured then
+          --   ui.image{ attr = { class = "icon16" }, static = "icons/32/empty.png" }
+          -- else
+          --   ui.image{ attr = { class = "icon16" }, static = "icons/32/phase_finished.png" }
+          -- end
           slot.put(" ")
-          ui.tag{ content = state_name }
+          if current then
+                  ui.container{ content = state_name, attr = { class = 'active text' } }
+          else
+                  ui.container{ content = state_name, attr = { class = 'text' } }
+          end
         end }
 
         local help_texts = {
@@ -152,7 +141,11 @@ ui.sidebar( "tab-whatcanido", function()
           verification = _("During the verification phase, existing initiatives cannot be changed anymore. Initiatives need to pass the 2nd quorum of #{quorum} at end of verification phase to become admitted for voting.", { quorum = quorum_text(issue.policy, 2) }),
           voting = _"During the voting phase, votes for all admitted initiatives in this issue can be cast. The final result will be calculated as soon as this phase ends."
         }
-        ui.container { attr = { id = "phase-help-" .. state, style = "display: none;" }, content = help_texts[state] }
+        ui.container { attr = { class = 'tooltip' }, content = function()
+                ui.tag{ tag = 'span', content = function()
+                        ui.tag{ tag = 'span', content= help_texts[state] }
+                end}
+        end}
 
       end }
     end
