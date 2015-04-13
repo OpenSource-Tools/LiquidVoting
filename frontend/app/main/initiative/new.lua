@@ -72,6 +72,7 @@ ui.form{
       ui.section( function()
         ui.sectionHead( function()
           ui.heading{ level = 1, content = encode.html(param.get("name")) }
+          ui.heading{ level = 1, content = "Goal:" .. encode.html(param.get("issue_name")) }
           if not issue then
             ui.container { content = policy.name }
           end
@@ -83,6 +84,8 @@ ui.form{
           ui.field.hidden{ name = "formatting_engine", value = param.get("formatting_engine") }
           ui.field.hidden{ name = "policy_id", value = param.get("policy_id") }
           ui.field.hidden{ name = "name", value = param.get("name") }
+          ui.field.hidden{ name = "issue_name", value = param.get("issue_name") }
+          ui.field.hidden{ name = "issue_id", value = param.get("issue_id") }
           ui.field.hidden{ name = "draft", value = param.get("draft") }
           ui.field.hidden{ name = "free_timing", value = param.get("free_timing") }
           ui.field.hidden{ name = "polling", value = param.get("polling", atom.boolean) }
@@ -161,7 +164,21 @@ ui.form{
                 tmp[#tmp+1] = allowed_policy
               end
             end
+            slot.put("<br />")
+            ui.heading { level = 2, content = _"What is the goal of your issue?" }
+            slot.put("(max. 140 chars, <span id='charcount-issue'>140</span> left)")
+            ui.field.text{
+                    attr = {
+                            id = '_issue_title',
+                            style = "width: 100%;",
+                            maxlength = 140,
+                            onkeyup = [[$('span#charcount-issue').html( 140-$('#_issue_title').val().length);]]
+                    },
+                    name  = "issue_name",
+                    value = param.get("issue_name")
+            }
             ui.heading{ level = 2, content = _"Please choose a policy for the new issue:" }
+            ui.field.hidden{ name = "issue_id", value = param.get("issue_id") }
             ui.field.select{
               name = "policy_id",
               foreign_records = tmp,
@@ -201,9 +218,17 @@ ui.form{
           end
           
           slot.put("<br />")
-          ui.heading { level = 2, content = _"Enter a title for your initiative (max. 140 chars):" }
+          ui.heading { level = 2, content = _"Enter a title for your initiative:" }
+          slot.put("(max. 140 chars, <span id='charcount'>140</span> left)")
           ui.field.text{
-            attr = { style = "width: 100%;" },
+            attr = {
+		id = '_initiative_name',
+		style = "width: 100%;",
+		maxlength = 140,
+		onkeyup = [[$('span#charcount').html(
+			140-$('#_initiative_name').val().length
+		);]]
+		},
             name  = "name",
             value = param.get("name")
           }
