@@ -21,12 +21,12 @@ slot.select ( 'navigation_right', function ()
       end 
     }
 
-    ui.link {
-      attr = { class = "searchLink" },
-      module = "index", view = "search", content = function ()
-        ui.image { static = "icons/16/magnifier.png" }
-      end
-    }
+    -- ui.link {
+    --   attr = { class = "searchLink" },
+    --   module = "index", view = "search", content = function ()
+    --     ui.image { static = "icons/16/magnifier.png" }
+    --   end
+    -- }
     
   end
   
@@ -68,6 +68,17 @@ slot.select ( 'navigation_right', function ()
     end }
     
   end -- if app.session.member
+
+  ui.tag { tag = 'div', attr = { class = 'help' }, content = function() 
+          ui.link{
+                  attr = {target = '_blank' },
+                  module = 'help',
+                  view = 'introduction',
+                  content = function() 
+                          ui.i {attr = { class = 'fa fa-question-circle' }}
+          end}
+  end}
+
     
 end)
 
