@@ -103,18 +103,6 @@ if member then
   if config.etherpad then
     do_etherpad_auth(member)
   end
-  slot.select("script", function()
-    ui.script{ script = [[
-      $('#swiper_info').addClass('active');
-    ]] }
-  end)
-  slot.select("swiper_info", function()
-    ui.tag { content = _"select tabs" }
-    slot.put(" &uparrow; ")
-    ui.tag { content = _"or swipe" }
-    slot.put(" &leftarrow;<br />")
-    ui.tag { content = _"to show more info and learn what you can do" }
-  end )
 else
   slot.select("error", function()
     ui.tag{ content = _'Invalid login name or password!' }
