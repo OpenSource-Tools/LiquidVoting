@@ -1,10 +1,10 @@
 function ui.sidebar ( arg1, arg2 )
 
-  local class = "sidebarSection"
+  local class = ""
   local content
   
   if arg2 then
-    class = class .. " " .. arg1
+    class =  arg1
     content = arg2
   else
     content = arg1
