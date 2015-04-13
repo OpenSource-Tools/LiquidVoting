@@ -65,15 +65,13 @@ ui.sidebar( "phases", function()
 
     if not failed then
 
-      local klass = ""
-      if current then klass = klass .. "current" end
+      local klass = "phase"
+      if current then klass = klass .. " current" end
       if not current and not current_occured and phase_success and not quorum and (quorum ~= 0) then
-        klass = klass .. "finished"
+        klass = klass .. " finished"
       end
 
-      ui.link{ attr = {
-              class = klass
-      }, content = function()
+      ui.container{ attr = { class = klass }, content = function()
         local quorum
         if state == "admission" then        quorum = quorum_text(issue.policy, 1)
         elseif state == "verification" then quorum = quorum_text(issue.policy, 2)
