@@ -11,6 +11,7 @@ function Issue:new_selector()
   selector:add_field("justify_interval(voting_time)::text", "voting_time_text")
   selector:add_field("justify_interval(coalesce(issue.fully_frozen + issue.voting_time, issue.half_frozen + issue.verification_time, issue.accepted + issue.discussion_time, issue.created + issue.admission_time) - now())", "state_time_left")
   selector:add_field("justify_interval(now() - issue.closed)", "closed_ago")
+  selector:add_field("to_char(created+admission_time, 'YYYY-MM-DD HH24:MI:SS')", "end_time")
   return selector
 end
 
@@ -282,9 +283,10 @@ function Issue.object_get:etherpad_url()
   return config.etherpad.base_url .. "p/" .. config.etherpad.group_id .. "$Issue" .. self.id
 end
 
-function Issue.object_get:name()
-  return self.policy.name .. " #" .. self.id
-end
+-- what the heck
+-- function Issue.object_get:issuename()
+--   return self.policy.name .. " #" .. self.id
+-- end
 
 function Issue.object_get:state_time_text()
   if self.closed then
