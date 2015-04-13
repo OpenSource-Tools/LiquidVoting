@@ -69,7 +69,7 @@ ui.form{
   content = function()
   
     if preview then
-      ui.section( function()
+      ui.section('section-initiative', function()
         ui.sectionHead( function()
           ui.heading{ level = 1, content = encode.html(param.get("name")) }
           ui.heading{ level = 1, content = "Goal:" .. encode.html(param.get("issue_name")) }
@@ -137,7 +137,7 @@ ui.form{
      
       execute.view{ module = "initiative", view = "_sidebar_wikisyntax" }
 
-      ui.section( function()
+      ui.section( 'section-initiative-new', function()
         if preview then
           ui.sectionHead( function()
             ui.heading { level = 1, content = _"Edit again" }
@@ -248,33 +248,19 @@ ui.form{
           end
           slot.put("<br />")
 
-          ui.heading { level = 2, content = _"Enter your proposal and/or reasons:" }
+          slot.put("<h2>Enter your proposal and/or reasons: (")
+          slot.put(
+                  ui.link{ content = "examples",
+                      static = 'examples.html',
+                      attr = { target = '_BLANK' }
+                  }
+          )
+          slot.put(")</h2>")
           ui.field.text{
             name = "draft",
             multiline = true, 
             attr = { style = "height: 50ex; width: 100%;" },
-            value = param.get("draft") or config.draft_template or [[
-Proposal
-======
-
-Replace me with your proposal.
-
-
-Reasons
-======
-
-Argument 1
-------
-
-Replace me with your first argument
-
-
-Argument 2
-------
-
-Replace me with your second argument
-
-]]
+            value = param.get("draft")
           }
           if not issue or issue.state == "admission" or issue.state == "discussion" then
             ui.container { content = _"You can change your text again anytime during admission and discussion phase" }
