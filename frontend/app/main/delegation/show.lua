@@ -113,7 +113,7 @@ local preview_trustee_id = param.get("preview_trustee_id", atom.integer)
 ui.script{ static = "js/update_delegation_info.js" }
 
 
-ui.section( function () 
+ui.section( 'section-delegation', function () 
   
   ui.sectionHead( function ()
     ui.heading{ level = 1, content = head_text }
