@@ -94,7 +94,7 @@ ui.sidebar("tab-whatcanido", function()
 end )
 
 
-ui.section( function()
+ui.section('section-admin', function()
   ui.sectionHead( function()
     ui.heading { level = 1, content = _"Organizational units and subject areas" }
   end )
