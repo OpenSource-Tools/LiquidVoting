@@ -36,7 +36,12 @@ ui.container{
         if initiative.vote_grade ~= nil then
           if initiative.vote_grade > 0 then
             local text = _"voted yes"
-            ui.image { attr = { class = "icon16", title = text, alt = text }, static = "icons/32/support_satisfied.png" }
+            -- ui.image { attr = { class = "icon16", title = text, alt = text }, static = "icons/32/support_satisfied.png" }
+            ui.i { attr = { class = 'fa fa-thumbs-up' }, content = function()
+              ui.tag { tag = 'span', content = function() 
+                ui.tag { tag = 'span', content = "you are subscribed" }
+              end}
+            end}
           elseif initiative.vote_grade == 0 then
           elseif initiative.vote_grade < 0 then
             local text = _"voted no"
@@ -46,7 +51,12 @@ ui.container{
           if initiative.member_info.supported then
             if initiative.member_info.satisfied then
               local text = _"supporter"
-              ui.image { attr = { class = "icon16", title = text, alt = text }, static = "icons/32/support_satisfied.png" }
+              -- ui.image { attr = { class = "icon16", title = text, alt = text }, static = "icons/32/support_satisfied.png" }
+              ui.i { attr = { class = 'fa fa-thumbs-up' }, content = function()
+                ui.tag { tag = 'span', content = function() 
+                  ui.tag { tag = 'span', content = _"you are subscribed" }
+                end}
+              end}
             else
               local text = _"supporter with restricting suggestions"
               ui.image { attr = { class = "icon16", title = text, alt = text }, static = "icons/32/support_unsatisfied.png" }
