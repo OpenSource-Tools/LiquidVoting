@@ -16,24 +16,24 @@ if not for_issue and not for_member then
   
   -- mode
 
-  local filter = { class = "filter_mode", name = "mode" }
-  
-  filter[#filter+1] = {
-    name = "issue",
-    label = _"issue view",
-    selector_modifier = function () end
-  }
+  -- local filter = { class = "filter_mode", name = "mode" }
+  -- 
+  -- filter[#filter+1] = {
+  --   name = "issue",
+  --   label = _"issue view",
+  --   selector_modifier = function () end
+  -- }
 
-  filter[#filter+1] = {
-    name = "timeline",
-    label = _"timeline",
-    selector_modifier = function ( selector ) 
-      selector:add_order_by ( "event.occurrence DESC" )
-      selector:add_order_by ( "id DESC" )
-    end
-  }
+  -- filter[#filter+1] = {
+  --   name = "timeline",
+  --   label = _"timeline",
+  --   selector_modifier = function ( selector ) 
+  --     selector:add_order_by ( "event.occurrence DESC" )
+  --     selector:add_order_by ( "id DESC" )
+  --   end
+  -- }
 
-  filters[#filters+1] = filter
+  -- filters[#filters+1] = filter
 
   -- context
 
