@@ -11,7 +11,7 @@ function Issue:new_selector()
   selector:add_field("justify_interval(voting_time)::text", "voting_time_text")
   selector:add_field("justify_interval(coalesce(issue.fully_frozen + issue.voting_time, issue.half_frozen + issue.verification_time, issue.accepted + issue.discussion_time, issue.created + issue.admission_time) - now())", "state_time_left")
   selector:add_field("justify_interval(now() - issue.closed)", "closed_ago")
-  selector:add_field("to_char(created+admission_time, 'YYYY-MM-DD HH24:MI:SS')", "end_time")
+  selector:add_field("to_char(issue.created+issue.admission_time, 'YYYY-MM-DD HH24:MI:SS')", "end_time")
   return selector
 end
 
