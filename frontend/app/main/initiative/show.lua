@@ -64,7 +64,7 @@ execute.view {
   }
 }
 
-ui.section( function ()
+ui.section('section-initiative', function ()
   execute.view{
     module = "initiative", view = "_head", params = {
       initiative = initiative
