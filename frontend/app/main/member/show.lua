@@ -74,7 +74,7 @@ execute.view {
 }
 
 
-ui.section( function() 
+ui.section( "section-member", function() 
   ui.sectionHead( function()
     execute.view{
       module = "member_image",
@@ -112,7 +112,7 @@ ui.section( function()
 end )
 
 
-ui.section( function()
+ui.section( "section-member", function()
   ui.sectionHead( function()
     ui.heading { level = 2, content = _"Initiatives created by this member" }
   end )
@@ -127,7 +127,7 @@ ui.section( function()
   end )
 end )
 
-ui.section( function()
+ui.section( "section-member", function()
   ui.sectionHead( function()
     ui.heading { level = 2, content = _"What this member is currently supporting" }
   end )
@@ -142,7 +142,7 @@ ui.section( function()
   end )
 end )
 
-ui.section( function()
+ui.section( "section-member", function()
   ui.sectionHead( function()
     ui.heading { level = 2, content = _"How this member voted" }
   end )
