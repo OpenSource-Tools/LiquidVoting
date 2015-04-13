@@ -43,12 +43,6 @@ local function print_delegation_info()
     
     if info.first_trustee_id then
     
-      local text = _"delegates to"
-      ui.image{
-        attr = { class = "delegation_arrow", alt = text, title = text },
-        static = "delegation_arrow_24_horizontal.png"
-      }
-
       local class = "micro_avatar"
       if not participant_occured and info.first_trustee_participation then
         participant_occured = true
@@ -64,24 +58,12 @@ local function print_delegation_info()
           
     if info.first_trustee_ellipsis then
 
-      local text = _"delegates to"
-      ui.image{
-        attr = { class = "delegation_arrow", alt = text, title = text },
-        static = "delegation_arrow_24_horizontal.png"
-      }
-
       slot.put("...")
       
     end
     
     if info.other_trustee_id then
     
-      local text = _"delegates to"
-      ui.image{
-        attr = { class = "delegation_arrow", alt = text, title = text },
-        static = "delegation_arrow_24_horizontal.png"
-      }
-
       local class = "micro_avatar"
       if not participant_occured and info.other_trustee_participation then
         participant_occured = true
@@ -97,12 +79,6 @@ local function print_delegation_info()
           
     if info.other_trustee_ellipsis then
 
-      local text = _"delegates to"
-      ui.image{
-        attr = { class = "delegation_arrow", alt = text, title = text },
-        static = "delegation_arrow_24_horizontal.png"
-      }
-
       slot.put("...")
       
     end
@@ -112,12 +88,6 @@ local function print_delegation_info()
     
     if info.delegation_loop == "own" then
       
-      local text = _"delegates to"
-      ui.image{
-        attr = { class = "delegation_arrow", alt = text, title = text },
-        static = "delegation_arrow_24_horizontal.png"
-      }
-
       execute.view{ module = "member_image", view = "_show", params = {
         member = member, class = "micro_avatar", popup_text = member.name,
         image_type = "avatar", show_dummy = true,
@@ -127,23 +97,11 @@ local function print_delegation_info()
       if info.first_trustee_ellipsis then
         if not trailing_ellipsis then
 
-          local text = _"delegates to"
-          ui.image{
-            attr = { class = "delegation_arrow", alt = text, title = text },
-            static = "delegation_arrow_24_horizontal.png"
-          }
-
           slot.put("...")
         end
           
       else
           
-        local text = _"delegates to"
-        ui.image{
-          attr = { class = "delegation_arrow", alt = text, title = text },
-          static = "delegation_arrow_24_horizontal.png"
-        }
-
         execute.view{
           module = "member_image", view = "_show", params = {
             member_id = info.first_trustee_id, 
@@ -157,12 +115,6 @@ local function print_delegation_info()
     
         
     elseif info.delegation_loop and not trailing_ellipsis then
-      local text = _"delegates to"
-      ui.image{
-        attr = { class = "delegation_arrow", alt = text, title = text },
-        static = "delegation_arrow_24_horizontal.png"
-      }
-
       slot.put("...")
     end
 
@@ -185,7 +137,12 @@ if not param.get("no_star", "boolean") then
     else
       if issue then
         local text = _"you are interested"
-        ui.image { attr = { class = "star", title = text, alt = text }, static = "icons/48/eye.png" }
+        -- ui.image { attr = { class = "star", title = text, alt = text }, static = "icons/48/eye.png" }
+        ui.i { attr = { class = 'fa fa-bell tooltip' }, content = function()
+            ui.tag{ tag = 'span', content = function()
+                ui.tag{ tag = 'span', content = text }
+            end}
+        end}
         if not issue.closed and info.own_participation and info.weight and info.weight > 1 then
           ui.link { 
             attr = { class = "right" }, content = "+" .. (info.weight - 1),
@@ -197,11 +154,6 @@ if not param.get("no_star", "boolean") then
       else
         local text = _"you are subscribed"
         ui.image { attr = { class = "icon24 star", title = text, alt = text }, static = "icons/48/star.png" }
-      end
-      if not for_title then
-        slot.put("<br />")
-      else
-        slot.put(" ")
       end
     end
   end
