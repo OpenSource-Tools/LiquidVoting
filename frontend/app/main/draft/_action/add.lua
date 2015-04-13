@@ -46,12 +46,19 @@ if param.get("preview") or param.get("edit") then
   return false
 end
 
+-- update the initiative name
+local ititle = param.get('initiative-title')
+if ititle:len() > 0 then
+        local tmp = db:query({ "UPDATE initiative SET name = ? WHERE id = ?", ititle, initiative.id }, "opt_object")
+end
+
 local draft = Draft:new()
 draft.author_id = app.session.member.id
 draft.initiative_id = initiative.id
 draft.formatting_engine = formatting_engine
 draft.content = param.get("content")
 draft:save()
+
 
 local supporter = Supporter:by_pk(initiative.id, app.session.member.id)
 
