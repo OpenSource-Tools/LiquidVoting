@@ -1,5 +1,9 @@
 local initiative_id = param.get("initiative_id")
 
+ui.title(
+    "Add suggestion"
+)
+
 ui.form{
   module = "suggestion",
   action = "add",
@@ -13,7 +17,7 @@ ui.form{
       params = { tab = "suggestions" }
     }
   },
-  attr = { class = "section vertical" },
+  attr = { class = "section section-suggest vertical" },
   content = function()
   
     ui.sectionHead( function()
