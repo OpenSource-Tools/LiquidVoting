@@ -63,22 +63,22 @@ ui.sidebar ( "tab-whatcanido", function ()
   --     end )
   --   end
   -- end
-  ui.sidebarSection( function()
-    ui.heading { level = 3, content = _"I want to learn more about LiquidFeedback" }
-    ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
-      ui.tag { tag = "li", content = function()
-        ui.link { module = "help", view = "introduction", content = _"structured discussion" }
-      end }
-      ui.tag { tag = "li", content = function()
-        ui.link { module = "help", view = "introduction", content = _"4 phases of a decision" }
-      end }
-      ui.tag { tag = "li", content = function()
-        ui.link { module = "help", view = "introduction", content = _"vote delegation" }
-      end }
-      ui.tag { tag = "li", content = function()
-        ui.link { module = "help", view = "introduction", content = _"preference voting" }
-      end }
-    end } 
-  end )
+  -- ui.sidebarSection( function()
+  --   ui.heading { level = 3, content = _"I want to learn more about LiquidFeedback" }
+  --   ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
+  --     ui.tag { tag = "li", content = function()
+  --       ui.link { module = "help", view = "introduction", content = _"structured discussion" }
+  --     end }
+  --     ui.tag { tag = "li", content = function()
+  --       ui.link { module = "help", view = "introduction", content = _"4 phases of a decision" }
+  --     end }
+  --     ui.tag { tag = "li", content = function()
+  --       ui.link { module = "help", view = "introduction", content = _"vote delegation" }
+  --     end }
+  --     ui.tag { tag = "li", content = function()
+  --       ui.link { module = "help", view = "introduction", content = _"preference voting" }
+  --     end }
+  --   end } 
+  -- end )
 
 end )
