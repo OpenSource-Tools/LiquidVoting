@@ -3,7 +3,7 @@ ui.title(_"Introduction")
 -- show the user what can be done
 execute.view { module = "index", view = "_sidebar_whatcanido" }
 
-ui.section(function()
+ui.section('section-help', function()
   ui.sectionHead(function()
     ui.heading{ level = 1, content = _"Structured discussion" }
   end)
