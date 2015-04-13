@@ -305,7 +305,8 @@ function Initiative.object_get:shortened_name()
 end
 
 function Initiative.object_get:display_name()
-  return "i" .. self.id .. ": " .. self.name
+  -- return "i" .. self.id .. ": " .. self.name
+  return self.name
 end
 
 function Initiative.object_get:initiator_names()
