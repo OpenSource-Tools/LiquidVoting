@@ -38,7 +38,7 @@ execute.view {
   }
 }
 
-ui.section( function ()
+ui.section('section-issue', function ()
   
   execute.view{ 
     module = "issue", view = "_head2", params = {
@@ -64,7 +64,7 @@ ui.section( function ()
 
 end )
 
-ui.section(function()
+ui.section("detail", function()
   ui.sectionHead( function()
     ui.heading { level = 1, content = _"Details" }
   end )
@@ -121,6 +121,5 @@ ui.section(function()
       end
     end
   }
-
-end )
+end)
 
