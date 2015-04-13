@@ -5,7 +5,11 @@ ui.tag{
   end
 }
 
-ui.title(_"Login")
+ui.title(function()
+        ui.tag { tag = 'li', content = _"Login"  }
+end)
+
+
 app.html_title.title = _"Login"
 
 execute.view{ module = "index", view = "_sidebar_motd_public" }
@@ -20,10 +24,6 @@ ui.sectionHead(function()
       locale.do_with({ lang = lang }, function()
         langcode = _("[Name of Language]")
       end)
-      
-      if i > 1 then
-        slot.put(" | ")
-      end
       
       ui.link{
         content = function()
@@ -85,10 +85,7 @@ ui.form{
           },
           content = ""
         }
-        slot.put("<br />")
-        slot.put("<br />")
         ui.link{ module = "index", view = "reset_password", text = _"Forgot password?" }
-        slot.put("&nbsp;&nbsp;")
         ui.link{ module = "index", view = "send_login", text = _"Forgot login name?" }
       end }
     end )
