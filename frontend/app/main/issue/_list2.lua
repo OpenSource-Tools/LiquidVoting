@@ -234,7 +234,8 @@ local function doit()
           ui.container{ attr = { class = "issue_info" }, content = function()
             ui.link{
               attr = { class = "issue" },
-              text = _("#{policy} ##{id}", { policy = issue.policy.name, id = issue.id }),
+              -- text = _("#{policy} ##{id}", { policy = issue.policy.name, id = issue.id }),
+              text = issue.name,
               module = "issue",
               view = "show",
               id = issue.id
@@ -257,7 +258,13 @@ local function doit()
           ui.container{ attr = { class = class }, content = function ()
             ui.tag { content = event_name }
             slot.put ( " " )
-            ui.tag{ attr = { class = "event_time" }, content = days_ago_text }
+            ui.tag{
+		attr = {
+			class = "event_time"
+		},
+		--content = days_ago_text
+		content = issue.end_time
+		}
           end }
         elseif mode == "timeline"
           and not for_issue
