@@ -195,6 +195,13 @@ if not is_polling then
   supporter:save()
 end
 
+
+-- update the issue name, if we have one.
+local issue_name    = util.trim(param.get("issue_name"))
+if issue_name:len() > 0 then
+    local tmp = db:query({ "UPDATE issue SET name = ? WHERE id = ?", issue_name, issue.id}, "opt_object")
+end
+
 slot.put_into("notice", _"Initiative successfully created")
 
 request.redirect{
