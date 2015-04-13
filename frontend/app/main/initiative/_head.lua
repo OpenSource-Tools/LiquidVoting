@@ -59,7 +59,11 @@ ui.sectionHead( "initiativeInfo", function ()
     end }
     
     if member then
-      ui.container { attr = { class = "mySupport right" }, content = function ()
+      local klass = 'btn-support'
+      if initiative.member_info.supported then
+              klass = 'btn-support supporter'
+      end
+      ui.container { attr = { class = klass }, content = function ()
         if initiative.issue.fully_frozen then
           if initiative.issue.member_info.direct_voted then
             --ui.image { attr = { class = "icon48 right" }, static = "icons/48/voted_ok.png" }
@@ -96,14 +100,10 @@ ui.sectionHead( "initiativeInfo", function ()
             }
           end
         elseif initiative.member_info.supported then
-          if initiative.member_info.satisfied then
-            ui.image { attr = { class = "icon48 right" }, static = "icons/32/support_satisfied.png" }
-          else
-            ui.image { attr = { class = "icon48 right" }, static = "icons/32/support_unsatisfied.png" }
-          end           
           ui.container { content = _"You are supporter" }
 
           if initiative.issue.member_info.own_participation then
+            ui.i { attr = { class =  'fa fa-thumbs-up'} }
             ui.link {
               attr = { class = "btn-link" },
               module = "initiative", action = "remove_support", 
@@ -113,7 +113,6 @@ ui.sectionHead( "initiativeInfo", function ()
               id = initiative.id,
               text = _"remove my support"
             }
-            
           else
             
             ui.link {
@@ -128,10 +127,9 @@ ui.sectionHead( "initiativeInfo", function ()
           
           slot.put(" ")
       
-
         elseif not initiative.issue.closed then
+          ui.i { attr = { class =  'fa fa-thumbs-up'}}
           ui.link {
-            attr = { class = "btn btn-default" },
             module = "initiative", action = "add_support", 
             routing = { default = {
               mode = "redirect", module = "initiative", view = "show", id = initiative.id
@@ -139,7 +137,6 @@ ui.sectionHead( "initiativeInfo", function ()
             id = initiative.id,
             text = _"add my support"
           }
-            
         end
       end }
       
