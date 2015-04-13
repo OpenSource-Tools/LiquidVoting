@@ -115,7 +115,7 @@ if #notification_links > 0 then
         attr = { class = "notifications", title = text },
         module = "index", view = "notifications",
         content = function ()
-          ui.image { attr = { class = "icon", alt = text }, static = "icons/48/bell.png" }
+          ui.i{ attr = { class = "fa fa-bell"} }
           ui.tag { attr = { class = "count" }, content = #notification_links }
         end
       }
