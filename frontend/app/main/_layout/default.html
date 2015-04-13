@@ -4,7 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title><!-- WEBMCP SLOTNODIV html_title --></title>
   <link rel="stylesheet" type="text/css" media="screen" href="__BASEURL__/static/gregor.js/gregor.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="__BASEURL__/static/tooltip.css" />
   <link rel="stylesheet" type="text/css" href="<!-- WEBMCP SLOTNODIV stylesheet_url -->" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <!-- WEBMCP SLOTNODIV html_head -->
   <script src="__BASEURL__/static/js/jquery-1.11.1.min.js"></script>
   <script type="text/javascript">jsFail = true;</script>
@@ -13,6 +15,7 @@
   <![endif]>
   <script type="text/javascript" src="__BASEURL__/static/js/jsprotect.js"></script>
   <script type="text/javascript" src="__BASEURL__/static/js/partialload.js"></script>
+  <script type="text/javascript" src="__BASEURL__/static/js/jquery.countdown.min.js"></script>
   <script type="text/javascript">var ui_tabs_active = {};</script>
 </head>
 <body style="">
@@ -25,7 +28,7 @@
     </div>
 
     <a class="logo" href="__BASEURL__/">
-      <span class="liquid">Liquid</span><span class="feedback">Feedback</span>
+      <span class="liquid">Liquid</span><span class="feedback">Voting</span>
       <span class="instanceName"><!-- WEBMCP SLOTNODIV instance_name --></span>
     </a>
 
@@ -58,16 +61,16 @@
 
   <!-- WEBMCP SLOTNODIV actions -->
   
-  <div id="swiper_tabs" class="swiper_tabs" style="display: none;">
+  <div style="display: none;">
 <!--    <div><a id="tab-0" href="#" onclick="slider.to(0); return false;"><img src="__BASEURL__/static/icons/16/chart_organisation.png" /></a></div>-->
     <div><a id="tab-0" href="#" onclick="slider.to(0); return false;"><img src="__BASEURL__/static/icons/16/text_list_bullets.png" width="32" height="32" /></a></div>
     <div><a id="tab-1" href="#" onclick="slider.to(1); return false;"><img src="__BASEURL__/static/icons/48/info.png" width="32" height="32" /></a></div>
     <div><a id="tab-2" href="#" onclick="slider.to(2); return false;"><img src="__BASEURL__/static/icons/16/group.png" width="32" height="32" /></a></div>
   </div>
   
-  <div id="swiper_info"><!-- WEBMCP SLOTNODIV swiper_info --></div>
-  <div id="swiper" class="swiper" style="position: absolute; width: 100%;">
-    <div id="swiper_wrap" class="swiper_wrap">
+  <div><!-- WEBMCP SLOTNODIV swiper_info --></div>
+  <div style="position: absolute; width: 100%;">
+    <div>
     </div>
   </div>
   
@@ -90,7 +93,7 @@
   </div>
 </div>
 
-  <div id="trace">
+  <div>
     <!-- WEBMCP SLOTNODIV trace_button -->
     <div id="trace_content" style="display: none;">
       <tt id="system_error"><!-- WEBMCP SLOT system_error --></tt>
@@ -116,6 +119,7 @@
   
     var slider;
   
+    /*
     function initSlider () {
     
       var els = [
@@ -252,6 +256,7 @@
       }
       
     }
+    */
     
     function resizeHandler() {
       if ( $(window).width() < 768 ) {
@@ -271,6 +276,18 @@
     resizeHandler();
     
   </script>
+
+  <script type='text/javascript'>
+        $(function(){
+                $('.event_time').each(function(){
+                        var et = $(this);
+                        et.countdown(et.html(), function(event){
+                                et.html(event.strftime('%D days %H:%M:%S'));
+                        });
+                });
+        });
+	</script>
+
 
 </body>
 </html>
