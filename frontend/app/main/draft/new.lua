@@ -46,14 +46,16 @@ ui.form{
   },
   content = function()
   
+    if param.get("preview") then
+
     ui.sectionHead( function()
-      ui.heading { level = 1, content = initiative.display_name }
+      ui.heading { level = 1, content = param.get('initiative-title') }
     end)
     
-    if param.get("preview") then
       ui.sectionRow( function()
         ui.field.hidden{ name = "formatting_engine", value = param.get("formatting_engine") }
         ui.field.hidden{ name = "content", value = param.get("content") }
+        ui.field.hidden{ name = "initiative-title", value = param.get("initiative-title") }
         local formatting_engine
         if config.enforce_formatting_engine then
           formatting_engine = config.enforce_formatting_engine
@@ -100,6 +102,10 @@ ui.form{
       end )
 
     else
+
+     ui.sectionHead( function()
+        ui.field.text{ name = 'initiative-title', value = initiative.display_name }
+     end)
       ui.sectionRow( function()
         execute.view{ module = "initiative", view = "_sidebar_wikisyntax" }
       
