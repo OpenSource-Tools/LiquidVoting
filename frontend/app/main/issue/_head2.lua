@@ -2,11 +2,15 @@ local issue = param.get("issue", "table")
 local for_history = param.get("for_history", atom.boolean)
 
 ui.sectionHead( "issueInfo", function ()
-  ui.container { attr = { class = "left" }, content = function()
+  ui.container { attr = { class = "title" }, content = function()
     ui.heading { level = 1, content = issue.name }
   end }
   if app.session.member then
-    ui.container { attr = { class = "right" }, content = function ()
+
+    local interested = (not issue.closed) and issue.member_info.own_participation
+    klass = "btn-interest"
+    if interested then klass = klass .. " interested" end
+    ui.container { attr = { class =  klass }, content = function ()
       if issue.fully_frozen then
         if issue.member_info.direct_voted then
           ui.image { attr = { class = "icon48 right" }, static = "icons/48/voted_ok.png" }
@@ -45,9 +49,15 @@ ui.sectionHead( "issueInfo", function ()
         end
       elseif not issue.closed then
         if issue.member_info.own_participation then
-          ui.image { attr = { class = "icon48 right" }, static = "icons/48/eye.png" }
+          -- ui.image { attr = { class = "icon48 right" }, static = "icons/48/eye.png" }
+          slot.put("<br />")
           ui.tag{ content = _"You are interested in this issue" }
           slot.put("<br />")
+          ui.i {
+          content = function()
+            end,
+            attr = { class = "fa fa-bell" }
+          }
           ui.link {
             module = "interest", action = "update", 
             params = { issue_id = issue.id, delete = true },
@@ -57,8 +67,13 @@ ui.sectionHead( "issueInfo", function ()
             text = _"remove my interest"
           }
         else
+          slot.put("<br />")
+          ui.i {
+          content = function()
+            end,
+            attr = { class = "fa fa-bell" }
+          }
           ui.link {
-            attr = { class = "btn btn-default" },
             module = "interest", action = "update", 
             params = { issue_id = issue.id },
             routing = { default = {
@@ -73,24 +88,17 @@ ui.sectionHead( "issueInfo", function ()
 end)
   
 ui.container {
-  attr = { class = "ui_filter", style="clear: left; margin-top: 4px;" },
-  content = function ()
-    ui.container {
-      attr = { class = "ui_filter_head" },
-      content = function ()
-        
-        ui.link{
-          attr = { class = not for_history and "active" or nil },
-          text = _"Initiatives",
-          module = "issue", view = "show", id = issue.id
-        }
-        slot.put(" ")
-        ui.link{
-          attr = { class = for_history and "active" or nil },
-          text = _"History",
-          module = "issue", view = "history", id = issue.id
-        }
-      end
+  attr = { class = "tabs" }, content = function ()
+    ui.link{
+      attr = { class = not for_history and "active" or nil },
+      text = _"Initiatives",
+      module = "issue", view = "show", id = issue.id
+    }
+    slot.put(" ")
+    ui.link{
+      attr = { class = for_history and "active" or nil },
+      text = _"History",
+      module = "issue", view = "history", id = issue.id
     }
   end
 }
