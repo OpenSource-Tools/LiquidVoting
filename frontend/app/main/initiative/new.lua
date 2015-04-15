@@ -137,21 +137,21 @@ ui.form{
      
       execute.view{ module = "initiative", view = "_sidebar_wikisyntax" }
 
-      ui.section( 'section-initiative-new', function()
-        if preview then
-          ui.sectionHead( function()
-            ui.heading { level = 1, content = _"Edit again" }
-          end )
-        elseif issue_id then
-          ui.sectionHead( function()
-            ui.heading { level = 1, content = _"Add a new competing initiative to issue" }
-          end )
-        else
-          ui.sectionHead( function()
-            ui.heading { level = 1, content = _"Create a new issue" }
-          end )
-        end
-      
+     local _class = 'section-initiative'
+     local _content
+     if preview then
+        _content = _"Edit again"
+     elseif issue_id then
+        _content = _"Add a new competing initiative to issue"
+     else
+        _class = 'section-initiative-new'
+        _content = _"Create a new issue"
+     end
+
+      ui.section(_class, function()
+        ui.sectionHead( function()
+          ui.heading { level = 1, content = _content }
+        end )
         ui.sectionRow( function()
           if not preview and not issue_id then
             ui.container { attr = { class = "section" }, content = _"Before creating a new issue, please check any existant issues before, if the topic is already in discussion." }
