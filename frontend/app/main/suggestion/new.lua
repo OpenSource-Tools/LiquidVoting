@@ -1,8 +1,10 @@
 local initiative_id = param.get("initiative_id")
 
-ui.title(
-    "Add suggestion"
-)
+ui.title(function()
+        ui.tag { tag = 'li', content = _"Add suggestion",
+                attr = { class = 'last', }
+        }
+end)
 
 ui.form{
   module = "suggestion",

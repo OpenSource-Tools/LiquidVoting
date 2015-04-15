@@ -5,16 +5,13 @@ function ui.titleMember(title, title2)
     title = title2
   end
   ui.title(function()
+    ui.tag { tag = 'li', content = function()
     if member then
       ui.link { module = "member", view = "show", id = member.id, content = member.name }
     end
     if title then
-      ui.tag { attr = { class = "spacer" }, content = function()
-        slot.put ( " » " )
-      end }
-      ui.tag { attr = { class = "member" }, content = function()
-        ui.tag{ tag = "span", content = title }
-      end }
+     ui.tag{ content = title }
     end
+    end, attr = { class = 'last' }}
   end)
 end

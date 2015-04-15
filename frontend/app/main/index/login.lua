@@ -14,7 +14,7 @@ app.html_title.title = _"Login"
 
 execute.view{ module = "index", view = "_sidebar_motd_public" }
 
-ui.section(function() 
+ui.section('section-login', function() 
 
 ui.sectionHead(function()
   ui.heading{ level = 1, content = _"Login" }

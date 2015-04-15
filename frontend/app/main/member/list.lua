@@ -1,4 +1,8 @@
-ui.title(_"Member list")
+ui.title(function()
+        ui.tag { tag = 'li', content = _"Member list",
+                attr = { class = 'last', }
+        }
+end)
 
 local members_selector = Member:new_selector()
   :add_where("activated NOTNULL")
@@ -16,4 +20,4 @@ ui.section( function()
       params = { members_selector = members_selector }
     }
   end )
-end )
+end    )

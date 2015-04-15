@@ -1,11 +1,16 @@
 local search_for = param.get("search_for", atom.string) or "global"
 local search_string = param.get("q", atom.string)
 
+local _content = _"Search"
 if search_string then
-  ui.title ( _("Search results for: '#{search}'", { search  = search_string } ) )
-else
-  ui.title ( _"Search" )
+  _content = _("Search results for: '#{search}'", { search  = search_string } )
 end
+
+ui.title(function()
+        ui.tag { tag = 'li', content = _content,
+                attr = { class = 'last', }
+        }
+end)
 
 ui.form{
   method = "get", module = "index", view = "search",
