@@ -31,7 +31,7 @@ execute.view {
 
 
 
-ui.section( function()
+ui.section('section-history section-issue', function()
 
   execute.view{ 
     module = "issue", view = "_head2", params = {
