@@ -328,19 +328,19 @@ for i, record in ipairs(delegation_chain) do
   local overridden = (not issue or issue.state ~= 'voting') and record.overridden
   ui.sidebarSection( function ()
     if record.scope_in then
-      if not overridden then
-        local text = _"delegated to"
-        ui.image{
-          attr = { class = "delegation_arrow", alt = text, title = text },
-          static = "delegation_arrow_24_vertical.png"
-        }
-      else
-        local text = _"delegated to"
-        ui.image{
-          attr = { class = "delegation_arrow delegation_arrow_overridden", alt = text, title = text  },
-          static = "delegation_arrow_24_vertical.png"
-        }
-      end
+      -- if not overridden then
+      --   local text = _"delegated to"
+      --   ui.image{
+      --     attr = { class = "delegation_arrow", alt = text, title = text },
+      --     static = "delegation_arrow_24_vertical.png"
+      --   }
+      -- else
+      --   local text = _"delegated to"
+      --   ui.image{
+      --     attr = { class = "delegation_arrow delegation_arrow_overridden", alt = text, title = text  },
+      --     static = "delegation_arrow_24_vertical.png"
+      --   }
+      -- end
       ui.tag{
         attr = { class = "delegation_scope" .. (overridden and " delegation_scope_overridden" or "") },
         content = function()
