@@ -1,0 +1,14 @@
+html {
+}
+
+body {
+	color: #333;
+	font-family: "Helvetica Neue", Helvetica, "Droid Sans", "Open Sans", "Microsoft Sans Serif", Arial;
+	@include font-size(15px);
+	line-height: 1.2;
+	background-color: $background;
+}
+
+#trace {
+	display: none;
+}

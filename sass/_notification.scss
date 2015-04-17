@@ -1,0 +1,31 @@
+.slot_notice,
+.slot_warning,
+.slot_error {
+    font: bold 12pt / 125% sans-serif;
+    padding: 12pt;
+    @include border-radius(7px);
+}
+.slot_motd {
+    background-color: #ccc;
+    padding: 12pt;
+}
+.slot_notice {
+    background-color: #2ecc71;
+    color: #fff;
+}
+.slot_warning {
+    background-color: #e67e22;
+    color: #FFF;
+}
+.slot_error {
+    background-color: #c0392b;
+    color: #fff;
+}
+.layout_notice, .layout_warning, .layout_error, .layout_motd {
+  position: absolute;
+  width: 800px;
+  top: 93px;
+  left: 50%;
+  margin-left: -400px;
+  z-index: 30;
+}

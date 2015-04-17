@@ -1,0 +1,17 @@
+.footer {
+    // position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #AAA;
+    @include font-size(13px);
+    // background-color: #FFF;
+    border-top: 1px solid #CCC;
+    line-height: 2.5;
+
+    a {
+        color: #AAA;
+    }
+}
+

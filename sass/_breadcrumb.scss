@@ -1,0 +1,147 @@
+$nav-background:        #FFF;
+$nav-label:             rgba(255,255,255,1);
+$nav-label-hover:       rgba(255,255,255,0.9);
+$nav-label-active:      rgba(255,255,255,1);
+$bread-height:          28px;
+$bread-arrow:           5px;
+
+.breadcrumbs {
+    &:before, &:after {
+        position: absolute;
+        content: " ";
+        display: block;
+        top: 0;
+        width: 0;
+        height: 0;
+        // transition: border-color 0.1s linear;
+    }
+    &:before {
+        z-index: 2;
+        left: -1*$bread-arrow;
+        border-left: $bread-arrow solid transparent;
+        border-top: $bread-height/2 solid $nav-label;
+        border-bottom: $bread-height/2 solid $nav-label;
+    }
+    &:after {
+        z-index: 3;
+        right: -1*$bread-arrow;
+        border-left: $bread-arrow solid $nav-label;
+        border-top: $bread-height/2 solid transparent;
+        border-bottom: $bread-height/2 solid transparent;
+    }
+}
+
+.title_outer {
+    line-height: $bread-height;
+    background-color: $color2;
+    position: fixed;
+    z-index: 20;
+    top: 50px;
+    left: 0;
+    width: 100%;
+
+    .slot_title {
+        max-width: $width;
+        height: $bread-height;
+        margin: 0 auto;
+
+        > ul {
+            li {
+                a.delegation_info img {
+                    display: none;
+                }
+            }
+        	li:not(.home):not(.unit):not(.area):not(.issue):not(.last):last-child {
+        		padding-left: 15px;
+        	}
+            li.initiative {
+                display: inline-block;
+                margin-left: 15px;
+
+                a {
+                    line-height: $bread-height;
+                }
+            }
+
+            li:not(.initiative) {
+                display: inline-block;
+
+                > a {
+                    margin-left: 7px;
+                    padding: 0 10px 0 10px;
+                    background-color: $nav-label;
+                    display: inline-block;
+                    position: relative;
+                    line-height: $bread-height;
+                    color: $text-light;
+
+                    &:hover {
+                        background-color: $nav-label-hover;
+                        &:before {
+	                        border-top-color: $nav-label-hover;
+	                        border-bottom-color: $nav-label-hover;
+                        }
+                        &:after {
+                        	border-left-color: $nav-label-hover;
+                        }
+                    }
+
+                    i {
+                        line-height: $bread-height;
+                    }
+
+                    @extend .breadcrumbs;
+
+                }
+
+                &.unit a span:before {
+                    @extend .fa;
+                    content: "\f0ac";
+                    margin-right: $bread-arrow;
+                }
+                &.area a span:before {
+                    @extend .fa;
+                    content: "\f0b1";
+                    margin-right: $bread-arrow;
+
+                }
+
+                &.home > a {
+                    margin: 0;
+                    padding: 0 10px 0 10px;
+                    // background-color: transparent;
+
+                    &:before {
+                        display: none;
+                    }
+
+                    &:after {
+                        // border-color: transparent;
+                    }
+
+                }
+
+                .delegation_info, .star {
+                    display: none;
+                }
+            }
+        }
+
+
+        // .initiative, a .label {
+        //     display: none;
+        // }
+
+        // .delegation_info {
+        //     background-color: #ffffff;
+        //     color: #000000;
+        //     border-radius: 2px;
+        //     padding-right: 3px;
+        //     margin-bottom: 12pt;
+
+        //     a {
+        //         color: #000000;
+        //     }
+        // }
+    }
+}

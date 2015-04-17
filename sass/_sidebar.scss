@@ -1,0 +1,174 @@
+.content > .sidebar {
+    display: inline-block;
+    float: left;
+    width: 230px;
+
+    > div {
+        margin-bottom: 20px;
+    }
+
+    // .sidebarSection {
+    //     color: $text;
+    //     padding: 0;
+    //     margin-bottom: 20px;
+
+    //     .sidebarHead {
+    //         h2 {
+    //             margin-bottom: 5px;
+    //         }
+    //         a {
+
+    //         }
+    //     }
+    .ui_filter {
+    	display: none;
+    }
+    .ui_filter_content {
+    	margin-top: 0px;
+    }
+    .sidebarRow {
+    	> div {
+    		display: none;
+    	}
+    	h3 {
+    		display: none;
+    	}
+    }
+
+    .tab-whatcanido {
+    	.sidebarHead {
+    		h2 {
+    			display: none;
+    		}
+    	}
+    }
+
+    ul.ul {
+    	li {
+    		a {
+    			display: block;
+    			width: 100%;
+    			background-color: rgba(0,0,0,0.1);
+    			padding: 6px 10px;
+    			color: #333;
+    			margin: 5px 0;
+    			@include border-radius(3px);
+    			@include font-size(14px);
+    			text-align: left;
+                border: 1px solid rgba(0,0,0,0.2);
+
+    			&:hover {
+    				background-color: $color1;
+                    color: #FFF;
+    			}
+    		}
+    	}
+    }
+
+    .tab-members {
+    	.head {
+    		h2 {
+    			line-height: 30px;
+    		}
+    	}
+        .member_list {
+        	> .row {
+
+	            .member_thumb {
+	                padding: 2px 0;
+
+	                img {
+	                    @include border-radius(50px);
+	                    vertical-align: middle;
+                        width: 40px;
+                        height: 40px;
+	                }
+
+	                span {
+	                    display: inline-block;
+	                    margin-left: 10px;
+	                }
+	            }
+	        }
+        }
+        .moreLink {
+        	padding-top: 10px;
+        	color: $color1;
+        	// text-decoration: underline;
+        }
+    }
+
+    .tab-sidebar-units {
+        .delegation_arrow {
+            display: none;
+        }
+        .member_image {
+            width: 20px;
+            height: 20px;
+            padding: 0 10px;
+        }
+        .head {
+            line-height: 35px;
+            // background-color: rgba(0,0,0,0.2);
+            padding: 0 10px;
+            // @include border-radius(4px);
+            border-bottom: 1px solid #AAA;
+
+
+            h2 a.unit {
+
+                &:hover{
+                    color:$color1;
+                }
+
+                &:before {
+                    @extend .fa;
+                    content: "\f0ac";
+                    margin-right: 10px;
+                    color: $text-light;
+                }
+            }
+        }
+        .areas {
+            .row {
+                position: relative;
+                line-height: 30px;
+                // background-color: rgba(0,0,0,0.1);
+                margin: 1px 0 1px 20px;
+                padding: 0 10px;
+                border-bottom: 1px solid #AAA;
+                // @include border-radius(4px);
+
+                a:hover {
+                    color: $color1;
+                }
+
+                .tooltip > span > span {
+                    width: 140px;
+                    margin-left: -70px;
+                    text-align: center;
+                }
+
+                i {
+                    float: right;
+                    // line-height: inherit;
+                    margin-top: 7px;
+                }
+
+                a.area:before {
+                    @extend .fa;
+                    content: "\f0b1";
+                    margin-right: 10px;
+                    color: $text-light;
+                }
+
+                .icon16 {
+                    // display: none;
+                }
+            }
+        }
+        .moreLink {
+            display: none;
+        }
+    }
+}
