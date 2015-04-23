@@ -119,7 +119,7 @@ ui.section( 'section-delegation', function ()
     ui.heading{ level = 1, content = head_text }
   end )
   
-  ui.sectionRow( function ()
+  ui.sectionRow('section section-delegatee', function ()
 
   ui.form{
     attr = { class = "wide section", id = "delegationForm" },
@@ -254,14 +254,12 @@ ui.section( 'section-delegation', function ()
 
       ui.field.hidden{ name = "preview" }
       
-      slot.put("<br />")
       ui.tag { tag = "input", content = "", attr = { 
         type = "submit",
         value = _"Save",
         class = "btn btn-default",
       } }
         
-      slot.put("<br /><br /><br />")
       if initiative then
         ui.link{
           module = "initiative",
@@ -376,7 +374,6 @@ for i, record in ipairs(delegation_chain) do
         end
       }
     end
-    slot.put("<br style='clear: left'/>")
   end )
 end
 
