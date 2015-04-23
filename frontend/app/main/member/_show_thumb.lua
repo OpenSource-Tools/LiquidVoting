@@ -6,6 +6,13 @@ local initiative = param.get("initiative", "table")
 local trustee = param.get("trustee", "table")
 
 local class = param.get("class")
+local function thumbs_up()
+              ui.i { attr = { class = 'fa fa-thumbs-up tooltip' }, content = function()
+                ui.tag { tag = 'span', content = function() 
+                  ui.tag { tag = 'span', content = _("supporter") }
+                end}
+              end}
+end
 
 local name_html
 if member.name_highlighted then
@@ -170,7 +177,8 @@ ui.container{
       slot.put ( " " )
       if member.supporter_satisfied then
         local text = _"supporter"
-        ui.image{ attr = { class = "icon24 right", alt = text, title = text }, static = "icons/32/support_satisfied.png" }
+        thumbs_up()
+        -- ui.image{ attr = { class = "icon24 right", alt = text, title = text }, static = "icons/32/support_satisfied.png" }
       else
         local text = _"supporter with restricting suggestions"
         ui.image{ attr = { class = "icon24 right", alt = text, title = text }, static = "icons/32/support_unsatisfied.png" }
