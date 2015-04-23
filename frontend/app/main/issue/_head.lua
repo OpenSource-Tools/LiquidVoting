@@ -4,8 +4,6 @@ local initiative = param.get("initiative", "table")
 local member = param.get ( "member", "table" )
 
 local unit  = param.get("unit", "table")
-local area  = param.get("area", "table")
-local issue = param.get("issue", "table")
 
 ui.title ( function ()
 
@@ -18,6 +16,11 @@ ui.title ( function ()
       }
     end
   }
+
+  local subscribed = ""
+  -- FIXME if issue.area.delegation_info.own_participation then
+  --         subscribed = " subscribed"
+  -- end
   ui.tag { tag = 'li', attr = { class = 'area' }, content = function()
       ui.link { content = function()
           ui.tag{ tag = 'span', content = issue.area.name }
@@ -28,8 +31,15 @@ ui.title ( function ()
     end
   }
 
+  local delegated = ""
+  local privileged_to_vote = app.session.member and app.session.member:has_voting_right_for_unit_id(issue.area.unit_id)
+  if privileged_to_vote and issue.member_info.first_trustee_id and issue.member_info.own_delegation_scope == "issue" then
+          delegated = " delegated"
+  end
+
+  -- breadcrumb
   local info        = issue.member_info
-  local klass       = 'issue'
+  local klass       = 'issue' .. delegated
   local interested  = info.own_participation
   if interested then klass = klass .. ' interested' end
   ui.tag { tag = 'li', attr = {class =  klass}, content = function()
