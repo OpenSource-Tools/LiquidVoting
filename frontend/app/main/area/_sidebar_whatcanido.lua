@@ -14,7 +14,7 @@ if member then
   end
 end
 
-ui.sidebar ( "tab-whatcanido", function ()
+ui.sidebar ( "tab tab-area-sidebar", function ()
 
   ui.sidebarHeadWhatCanIDo()
   
@@ -28,12 +28,14 @@ ui.sidebar ( "tab-whatcanido", function ()
       
         ui.heading {
           level = 3, 
+          attr = { class = 'h3' },
           content = _"I want to participate in this subject area"
         }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.tag { content = function ()
               ui.link {
+              attr = { class = 'membershipupdate' },
                 module = "membership", action = "update",
                 routing = { default = {
                   mode = "redirect", module = "area", view = "show", id = area.id
@@ -52,12 +54,14 @@ ui.sidebar ( "tab-whatcanido", function ()
         ui.image{ attr = { class = "right" }, static = "icons/48/star.png" }
         ui.heading {
           level = 3, 
+          attr = { class = 'h3' },
           content = _"You are subscribed for this subject area" 
         }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.tag { content = function ()
               ui.link {
+              attr = { class = 'membershipupdate2' },
                 module = "membership", action = "update",
                 routing = { default = {
                   mode = "redirect", module = "area", view = "show", id = area.id
@@ -76,7 +80,9 @@ ui.sidebar ( "tab-whatcanido", function ()
     
 
       if not area.delegation_info.first_trustee_id then
-        ui.heading{ level = 3, content = _"I want to delegate this subject area" }
+        ui.heading{ 
+                attr = { class = 'h3' },
+                level = 3, content = _"I want to delegate this subject area" }
       else
         ui.container { attr = { class = "right" }, content = function()
           local member = Member:by_id(area.delegation_info.first_trustee_id)
@@ -90,13 +96,16 @@ ui.sidebar ( "tab-whatcanido", function ()
             }
           }
         end }
-        ui.heading{ level = 3, content = _"You delegated this subject area" }
+        ui.heading{ 
+                attr = { class = 'h3' },
+                level = 3, content = _"You delegated this subject area" }
       end
 
       ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
         if area.delegation_info.own_delegation_scope == "unit" then
           ui.tag { tag = "li", content = function ()
             ui.link {
+              attr = { class = 'delegationshow' },
               module = "delegation", view = "show", params = {
                 unit_id = area.unit_id,
               },
@@ -108,6 +117,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         if area.delegation_info.own_delegation_scope == nil then
           ui.tag { tag = "li", content = function ()
             ui.link {
+              attr = { class = 'delegationshow2' },
               module = "delegation", view = "show", params = {
                 area_id = area.id
               },
@@ -117,6 +127,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         elseif area.delegation_info.own_delegation_scope == "area" then
           ui.tag { tag = "li", content = function ()
             ui.link {
+              attr = { class = 'delegationshow3' },
               module = "delegation", view = "show", params = {
                 area_id = area.id
               },
@@ -126,6 +137,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         else
           ui.tag { tag = "li", content = function ()
             ui.link {
+              attr = { class = 'delegationshow4' },
               module = "delegation", view = "show", params = {
                 area_id = area.id
               },
@@ -142,17 +154,19 @@ ui.sidebar ( "tab-whatcanido", function ()
     if app.session.member:has_voting_right_for_unit_id ( area.unit_id ) then
       ui.sidebarSection ( function ()
         ui.heading {
+          attr = { class = 'h3' },
           level = 3, 
           content = _("I want to start a new initiative", {
             area_name = area.name
           } ) 
         }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
-          ui.tag { tag = "li", content = _"Take a look through the existing issues. Maybe someone else started a debate on your topic (and you can join it) or the topic has been decided already in the past." }
+          ui.tag { tag = "li", attr = { class = 'takealook'}, content = _"Take a look through the existing issues. Maybe someone else started a debate on your topic (and you can join it) or the topic has been decided already in the past." }
           ui.tag { tag = "li", content = function ()
             ui.tag { content = function ()
-              ui.tag { content = _"If you cannot find any appropriate existing issue, " }
+              ui.tag { attr = { class = 'cannotfind' }, content = _"If you cannot find any appropriate existing issue, " }
               ui.link {
+              attr = { class = 'newinitiative' },
                 module = "initiative", view = "new",
                 params = { area_id = area.id },
                 text = _"start an initiative in a new issue"
