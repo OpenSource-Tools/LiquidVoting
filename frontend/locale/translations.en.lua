@@ -979,4 +979,8 @@ return {
 ["you have #{count} incoming delegations"] = false;
 ["you restricted your support by rating suggestions as must or must not"] = false;
 ["you voted"] = false;
+
+-- 
+["Add a new competing initiative to issue"] = "Add new competing proposal to the goal";
+["start a new competing initiative"] = "start a new competing proposal";
 }
