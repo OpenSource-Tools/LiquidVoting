@@ -15,7 +15,9 @@ local private_contacts_selector = Contact:build_selector{
 ui.sidebar( "tab-members", function()
 
   ui.sidebarHead( function()
-    ui.heading { level = 2, content = _"Published contacts" }
+    ui.heading { 
+  attr = { class = 'h2' },
+            level = 2, content = _"Published contacts" }
   end )
   
   --ui.sidebarSection( function()
@@ -31,7 +33,7 @@ ui.sidebar( "tab-members", function()
         content = function()
           local contacts = public_contacts_selector:exec()
           for i, contact in ipairs(contacts) do
-            ui.sidebarSection( "sidebarRowNarrow", function()
+            ui.sidebarSection( "row narrow", function()
               execute.view{ module = "member_image", view = "_show", params = {
                 member_id = contact.other_member.id, class = "micro_avatar", 
                 popup_text = contact.other_member.name,
@@ -39,6 +41,7 @@ ui.sidebar( "tab-members", function()
               } }
               slot.put(" ")
               ui.link{
+                attr = { class = "membershow" },
                 content = contact.other_member.name,
                 module = "member",
                 view = "show",
@@ -57,7 +60,9 @@ ui.sidebar( "tab-members", function()
   then
 
     ui.sidebarHead( function()
-      ui.heading { level = 2, content = _"Private contacts" }
+      ui.heading { 
+  attr = { class = 'h2' },
+              level = 2, content = _"Private contacts" }
     end )
     
     ui.paginate{
@@ -66,7 +71,7 @@ ui.sidebar( "tab-members", function()
       content = function()
         local contacts = private_contacts_selector:exec()
         for i, contact in ipairs(contacts) do
-          ui.sidebarSection( "sidebarRowNarrow", function()
+          ui.sidebarSection( "row narrow", function()
             execute.view{ module = "member_image", view = "_show", params = {
               member_id = contact.other_member.id, class = "micro_avatar", 
               popup_text = contact.other_member.name,
@@ -74,6 +79,7 @@ ui.sidebar( "tab-members", function()
             } }
             slot.put(" ")
             ui.link{
+                attr = { class = "membershow2" },
               content = contact.other_member.name,
               module = "member",
               view = "show",
