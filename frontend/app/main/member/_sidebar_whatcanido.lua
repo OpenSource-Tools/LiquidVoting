@@ -1,6 +1,6 @@
 local member = param.get("member", "table")
 
-ui.sidebar( "tab-whatcanido", function()
+ui.sidebar( "tab tab-member-sidebar", function()
 
   if not member.active then
     ui.container{ attr = { class = "sidebarSection" }, content = function()
@@ -27,10 +27,13 @@ ui.sidebar( "tab-whatcanido", function()
 
   if member.id == app.session.member_id and not app.session.needs_delegation_check then
     ui.sidebarSection( function()
-      ui.heading { level = 3, content = _"I want to customize my profile" }
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = _"I want to customize my profile" }
       ui.tag{ tag = "ul", attr = { class = "ul" }, content = function()
         ui.tag{ tag = "li", content = function()
           ui.link{
+                attr = { class = "editprofile" },
             content = _"edit profile data",
             module  = "member",
             view    = "edit"
@@ -38,6 +41,7 @@ ui.sidebar( "tab-whatcanido", function()
         end }
         ui.tag{ tag = "li", content = function()
           ui.link{
+                attr = { class = "changeavatar" },
             content = _"change avatar/photo",
             module  = "member",
             view    = "edit_images"
@@ -64,7 +68,9 @@ ui.sidebar( "tab-whatcanido", function()
     
     ui.sidebarSection( function()
 
-      ui.heading { level = 3, content = _"I want to change account settings" }
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = _"I want to change account settings" }
 
       local pages = {}
 
@@ -91,6 +97,7 @@ ui.sidebar( "tab-whatcanido", function()
         for i, page in ipairs(pages) do
           ui.tag{ tag = "li", content = function()
             ui.link{
+                attr = { class = "pageview"..i },
               module = page.module or "member",
               view = page.view,
               text = page.text
@@ -101,10 +108,13 @@ ui.sidebar( "tab-whatcanido", function()
     end )
     
     ui.sidebarSection( function()
-      ui.heading { level = 3, content = _"I want to logout" }
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = _"I want to logout" }
       ui.tag{ tag = "ul", attr = { class = "ul" }, content = function()
         ui.tag{ tag = "li", content = function()
           ui.link{
+                attr = { class = "logout" },
             text   = _"logout",
             module = 'index',
             action = 'logout',
@@ -121,7 +131,9 @@ ui.sidebar( "tab-whatcanido", function()
     end )
     
     ui.sidebarSection( function()
-      ui.heading { level = 3, content = _"I want to change the interface language" }
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = _"I want to change the interface language" }
       ui.tag{ tag = "ul", attr = { class = "ul" }, content = function()
         for i, lang in ipairs(config.enabled_languages) do
           
@@ -133,6 +145,7 @@ ui.sidebar( "tab-whatcanido", function()
           
           ui.tag{ tag = "li", content = function()
             ui.link{
+                attr = { class = "selectlanguage" },
               content = _('Select language "#{langcode}"', { langcode = langcode }),
               module = "index",
               action = "set_lang",
@@ -157,10 +170,13 @@ ui.sidebar( "tab-whatcanido", function()
 
       local contact = Contact:by_pk(app.session.member.id, member.id)
       if not contact then
-        ui.heading { level = 3, content = _"I want to save this member as contact (i.e. to use as delegatee)" }
+        ui.heading { 
+  attr = { class = 'h3' },
+                level = 3, content = _"I want to save this member as contact (i.e. to use as delegatee)" }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "addtolist" },
               text    = _"add to my list of public contacts",
               module  = "contact",
               action  = "add_member",
@@ -179,6 +195,7 @@ ui.sidebar( "tab-whatcanido", function()
           end }
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "addtolist2" },
               text    = _"add to my list of private contacts",
               module  = "contact",
               action  = "add_member",
@@ -196,10 +213,13 @@ ui.sidebar( "tab-whatcanido", function()
           end }
         end }
       elseif contact.public then
-        ui.heading { level = 3, content = _"You saved this member as contact (i.e. to use as delegatee) and others can see it" }
+        ui.heading { 
+  attr = { class = 'h3' },
+                level = 3, content = _"You saved this member as contact (i.e. to use as delegatee) and others can see it" }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "makecontactprivate" },
               text   = _"make this contact private",
               module = "contact",
               action = "add_member",
@@ -218,6 +238,7 @@ ui.sidebar( "tab-whatcanido", function()
           end }
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "removefromcontact" },
               text   = _"remove from my contact list",
               module = "contact",
               action = "remove_member",
@@ -235,10 +256,13 @@ ui.sidebar( "tab-whatcanido", function()
           end }
         end }
       else
-        ui.heading { level = 3, content = _"You saved this member as contact (i.e. to use as delegatee)" }
+        ui.heading { 
+  attr = { class = 'h3' },
+                level = 3, content = _"You saved this member as contact (i.e. to use as delegatee)" }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "publish" },
               text   = _"make this contact public",
               module = "contact",
               action = "add_member",
@@ -257,6 +281,7 @@ ui.sidebar( "tab-whatcanido", function()
           end }
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "removefromcontact" },
               text   = _"remove from my contact list",
               module = "contact",
               action = "remove_member",
@@ -279,7 +304,9 @@ ui.sidebar( "tab-whatcanido", function()
     ui.sidebarSection( function()
       local ignored_member = IgnoredMember:by_pk(app.session.member.id, member.id)
       if not ignored_member then
-        ui.heading { level = 3, content = _"I do not like to hear from this member" }
+        ui.heading { 
+  attr = { class = 'h3' },
+                level = 3, content = _"I do not like to hear from this member" }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link{
@@ -301,10 +328,13 @@ ui.sidebar( "tab-whatcanido", function()
           end }
         end }
       else
-        ui.heading { level = 3, content = _"You blocked this member (i.e. you will not be notified about this members actions)" }
+        ui.heading { 
+  attr = { class = 'h3' },
+                level = 3, content = _"You blocked this member (i.e. you will not be notified about this members actions)" }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "unblock" },
               text   = _"unblock member",
               module = "member",
               action = "update_ignore_member",
