@@ -15,7 +15,7 @@ local policies = selector:exec()
 
 for i, policy in ipairs(policies) do
   ui.container { 
-    attr = { class = "sidebarRow", id = "policy" .. policy.id },
+    attr = { class = "row", id = "policy" .. policy.id },
     content = function ()
 
       ui.heading { level = 3, content = policy.name }
