@@ -1,5 +1,8 @@
 if app.session.member then
-  ui.title(_"Notifications")
+  ui.title(function()
+          ui.tag{ tag = 'li', attr = {class = 'last'},
+          content = _"Notifications"
+  }end)
     
   ui.section( function() 
 
