@@ -29,7 +29,10 @@ if initiative.issue.fully_frozen and initiative.issue.closed and initiative.admi
 
       util.initiative_pie( initiative )
       
-      ui.heading { level = 1, content = head_text }
+      ui.heading { 
+
+              attr = { class = 'h1' },
+              level = 1, content = head_text }
       
       ui.tag { tag = "table", content = function ()
         ui.tag { tag = "tr", attr = { class = "yes" }, content = function ()
@@ -73,7 +76,9 @@ if initiative.admitted == false then
   ui.container{
     attr = { class = "sectionRow not_admitted_info" },
     content = function ()
-      ui.heading { level = 1, content = _"Initiative not admitted" }
+      ui.heading { 
+              attr = { class = 'h1' },
+              level = 1, content = _"Initiative not admitted" }
       ui.container { content = _("This initiative has not been admitted! It failed the 2nd quorum of #{quorum}.", { quorum = format.percentage ( policy.initiative_quorum_num / policy.initiative_quorum_den ) } ) }
     end
   }
@@ -84,13 +89,16 @@ if initiative.revoked then
   ui.container{
     attr = { class = "sectionRow revoked_info" },
     content = function()
-      ui.heading { level = 1, content = _"Initiative revoked" }
+      ui.heading { 
+              attr = { class = 'h1' },
+              level = 1, content = _"Initiative revoked" }
       slot.put(_("This initiative has been revoked at #{revoked} by:", {
         revoked = format.timestamp(initiative.revoked)
       }))
       slot.put(" ")
       if app.session:has_access("authors_pseudonymous") then
         ui.link{
+            attr = { class = "showmember" },
           module = "member", view = "show", id = initiative.revoked_by_member_id,
           content = initiative.revoked_by_member.name
         }
@@ -103,6 +111,7 @@ if initiative.revoked then
         slot.put(_("The initiators suggest to support the following initiative:"))
         slot.put("<br />")
         ui.link{
+            attr = { class = "showinitiative" },
           content = suggested_initiative.display_name,
           module = "initiative",
           view = "show",
