@@ -3,8 +3,10 @@ local initiative = param.get("initiative", "table")
 
 ui.sidebar( function ()
   ui.sidebarHead( function ()
-    ui.link { attr = { name = "history" }, text = "" }
-    ui.heading { level = 1, content = _"History" }
+    ui.link { attr = { name = "history", class='history' }, text = "" }
+    ui.heading { 
+            attr = { class = 'h1' },
+            level = 1, content = _"History" }
   end )
   execute.view {
     module = "issue", view = "_list2", params = {
