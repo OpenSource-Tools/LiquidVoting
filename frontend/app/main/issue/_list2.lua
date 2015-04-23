@@ -48,6 +48,7 @@ elseif mode == "timeline" then
 elseif mode == "issue" then
   
   selector = Issue:new_selector()
+    :add_order_by("created DESC")
 
 end
 
@@ -91,9 +92,9 @@ local function doit()
     return
   end
   
-  local row_class = "sectionRow"
+  local row_class = "section row"
   if for_sidebar then
-    row_class = "sidebarRow"
+    row_class = "row"
   end
   
   if mode == "timeline" then
@@ -234,7 +235,6 @@ local function doit()
           ui.container{ attr = { class = "issue_info" }, content = function()
             ui.link{
               attr = { class = "issue" },
-              -- text = _("#{policy} ##{id}", { policy = issue.policy.name, id = issue.id }),
               text = issue.name,
               module = "issue",
               view = "show",
