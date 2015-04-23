@@ -11,6 +11,7 @@ end
 ui.sidebar ( "tab-members", function ()
   ui.sidebarHead( function()
     ui.heading {
+      attr = { class = 'h2' },
       level = 2,
       content = _("Registered members (#{count})", { count = member_count })
     }
@@ -25,12 +26,12 @@ ui.sidebar ( "tab-members", function ()
     module = 'member', view   = '_list', params = {
       members_selector = selector,
       no_filter = true, no_paginate = true,
-      member_class = "sidebarRow sidebarRowNarrow"
+      member_class = "row narrow"
     }
   }
   
   ui.link {
-    attr = { class = "sidebarRow moreLink" },
+    attr = { class = "row moreLink" },
     text = _"Show full member list",
     module = "member", view = "list"
   }
