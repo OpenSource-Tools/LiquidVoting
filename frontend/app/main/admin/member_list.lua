@@ -2,7 +2,7 @@ local search = param.get("search")
 
 ui.titleAdmin(_"Member list")
 
-ui.section( function()
+ui.section('section-member-list', function()
 
   ui.sectionHead( function()
     ui.heading { level = 1, content = _"Member list" }
