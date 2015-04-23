@@ -12,6 +12,7 @@ if app.session:has_access("all_pseudonymous") then
     
     ui.sidebarHead( function()
       ui.heading{
+  attr = { class = 'h2' },
         level = 2, content = text
       }
     end )
@@ -55,7 +56,7 @@ if app.session:has_access("all_pseudonymous") then
         initiative = initiative,
         members_selector = interested_members_selector,
         paginator_name = "members",
-        member_class = "sidebarRow sidebarRowNarrow",
+        member_class = "row narrow",
         for_votes = issue.state == "finished_with_winner" or issue.state == "finished_without_winner"
       }
     }
