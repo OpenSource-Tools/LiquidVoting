@@ -7,9 +7,9 @@ local readonly = false
 local preview = param.get("preview") and true or false
 
 if member_id then
-  if not issue.closed then
-    error("access denied")
-  end
+  -- if not issue.closed then
+    -- error("access denied")
+  -- end
   member = Member:by_id(member_id)
   readonly = true
 end
@@ -160,7 +160,7 @@ then
         issue = issue,
         initiative = initiative,
         for_votes = true, no_filter = true,
-        member_class = "sidebarRow sidebarRowNarrow",
+        member_class = "row narrow",
       }
     }
   end)
