@@ -25,16 +25,19 @@ slot.select ( "sidebar", function ()
     and (issue_info.own_participation or active_trustee_id)
   then
     ui.container {
-      attr = { class = "tab-whatcanido sidebarSection" },
+      attr = { class = "tab tab-initiative-support" },
       content = function ()
 
         
         if initiative_info.supported then
-          ui.heading { level = 1, content = function ()
+          ui.heading { 
+                  attr = { class = 'h1' },
+                  level = 1, content = function ()
             ui.tag { content = _"I'm supporting this initiative" }
             if issue_info.weight then
               slot.put ( " " )
               ui.link {
+                attr = { class = "showincoming" },
                 module = "delegation", view = "show_incoming", params = {
                   issue_id = initiative.issue_id,
                   member_id = app.session.member_id
@@ -45,11 +48,14 @@ slot.select ( "sidebar", function ()
           end }
           
         else
-          ui.heading { level = 1, content = function ()
+          ui.heading { 
+                  attr = { class = 'h1' },
+                  level = 1, content = function ()
             ui.tag { content = _"I'm interested in this issue" }
             if issue_info.weight then
               slot.put ( " " )
               ui.link {
+                attr = { class = "showincoming" },
                 module = "delegation", view = "show_incoming", params = {
                   issue_id = initiative.issue_id,
                   member_id = app.session.member_id
@@ -74,12 +80,15 @@ slot.select ( "sidebar", function ()
     (issue_info.direct_voted or active_trustee_id)
   then
     ui.container {
-      attr = { class = "tab-whatcanido sidebarSection" },
+      attr = { class = "tab-initiative votes" },
       content = function ()
       
         if issue_info.direct_voted then
-          ui.heading { level = 1, content = _"You have been voted" }
+          ui.heading { 
+                  attr = { class = 'h1' },
+                  level = 1, content = _"You have been voted" }
           ui.link {
+                attr = { class = "showvoting" },
             content = _"Show my voting ballot",
             module = "vote", view = "list", params = {
               issue_id = initiative.issue.id
@@ -89,11 +98,14 @@ slot.select ( "sidebar", function ()
           
           
           if active_trustee_id then
-            ui.heading { level = 1, content = _"You have been voted" }
+            ui.heading { 
+                  attr = { class = 'h1' },
+                    level = 1, content = _"You have been voted" }
             ui.container { 
               content = _"via delegation"
             }
             ui.link {
+                attr = { class = "showvoting" },
               content = _"Show voting ballot",
               module = "vote", view = "list", params = {
                 issue_id = initiative.issue.id, member_id = active_trustee_id
