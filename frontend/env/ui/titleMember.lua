@@ -9,9 +9,9 @@ function ui.titleMember(title, title2)
     if member then
       ui.link { module = "member", view = "show", id = member.id, content = member.name }
     end
+    end}
     if title then
-     ui.tag{ content = title }
+    ui.tag { tag = 'li', content = title, attr = { class = 'last' }}
     end
-    end, attr = { class = 'last' }}
   end)
 end

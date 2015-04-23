@@ -1,6 +1,6 @@
 function ui.sidebarHead ( arg1, arg2 )
 
-  local class = "sidebarHead"
+  local class = "head"
   local content
   
   if arg2 then

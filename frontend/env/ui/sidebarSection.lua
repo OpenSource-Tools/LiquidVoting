@@ -1,6 +1,6 @@
 function ui.sidebarSection ( arg1, arg2 )
 
-  local class = "sidebarRow"
+  local class = "row"
   local content
   
   if arg2 then

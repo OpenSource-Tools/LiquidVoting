@@ -6,9 +6,9 @@ function ui.titleAdmin(title)
     else
       ui.tag{ content = _"System administration" }
     end
+    end }
     if title then
-      ui.tag { tag = "span", content = title }
+      ui.tag { tag = "li", content = title , attr = { class = 'last' }}
     end
-    end, attr = { class = 'last' } }
   end)
 end

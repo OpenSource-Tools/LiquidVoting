@@ -1,6 +1,6 @@
 function ui.sectionRow ( arg1, arg2 )
 
-  local class = "sectionRow"
+  local class = "row"
   local content
   
   if arg2 then
