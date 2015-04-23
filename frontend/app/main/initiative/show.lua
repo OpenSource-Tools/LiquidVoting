@@ -30,16 +30,16 @@ if app.session.member_id then
   direct_supporter = initiative.issue.member_info.own_participation and initiative.member_info.supported
 end
 
-ui.script { script = [[
-  function showTab(tabId) {
-    $('.tab').hide();
-    $('.main').hide();
-    $('.main, .slot_extra .section').hide();
-    $('.' + tabId).show();
-    if (tabId == "main") $('.slot_extra .section').show();
-  };
-  showTab('main');
-]]}
+-- ui.script { script = [[
+--   function showTab(tabId) {
+--     $('.tab').hide();
+--     $('.main').hide();
+--     $('.main, .slot_extra .section').hide();
+--     $('.' + tabId).show();
+--     if (tabId == "main") $('.slot_extra .section').show();
+--   };
+--   showTab('main');
+-- ]]}
 
 execute.view{ module = "issue", view = "_sidebar_state", params = {
   initiative = initiative
