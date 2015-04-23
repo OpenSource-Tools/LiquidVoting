@@ -108,25 +108,26 @@ end
 local mode = param.get("mode") or "view"
 
 if #notification_links > 0 then
-  if mode == "link" then
-    slot.select("notification", function ()
-      local text = _"notifications"
-      ui.link {
-        attr = { class = "notifications", title = text },
-        module = "index", view = "notifications",
-        content = function ()
-          ui.i{ attr = { class = "fa fa-bell"} }
-          ui.tag { attr = { class = "count" }, content = #notification_links }
+        if mode == "link" then
+                slot.select("notification", function ()
+                        local text = _"notifications"
+                        ui.link {
+                                attr = { class = "notifications", title = text },
+                                module = "index", view = "notifications",
+                                content = function ()
+                                        ui.i{ attr = { class = "fa fa-bell"} }
+                                        ui.tag { attr = { class = "count" }, content = #notification_links }
+                                end
+                        }
+                end )
+        elseif mode == "view" then
+                ui.tag{ tag = "ul", attr = { class = "ul" }, content = function()
+                        for i, notification_link in ipairs(notification_links) do
+                                ui.tag{ tag = "li", content = function()
+                                        notification_link.attr = {class = 'notification-view'}
+                                        ui.link(notification_link)
+                                end}
+                        end
+                end }
         end
-      }
-    end )
-  elseif mode == "view" then
-    ui.tag{ tag = "ul", attr = { class = "ul" }, content = function()
-      for i, notification_link in ipairs(notification_links) do
-        ui.tag{ tag = "li", content = function()
-          ui.link(notification_link)
-        end }
-      end
-    end }
-  end
 end
