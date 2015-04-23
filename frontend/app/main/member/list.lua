@@ -7,7 +7,7 @@ end)
 local members_selector = Member:new_selector()
   :add_where("activated NOTNULL")
 
-ui.section( function()
+ui.section('section-all-members', function()
 
   ui.sectionHead( function()
     ui.heading { level = 1, content = _"Member list" }
