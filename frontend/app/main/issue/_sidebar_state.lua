@@ -155,13 +155,17 @@ ui.sidebar( "phases", function()
     
   if issue.closed then
     ui.sidebarSection( function()
-      ui.heading { level = 1, content = issue.state_name }
+      ui.heading { 
+  attr = { class = 'h1' },
+              level = 1, content = issue.state_name }
     end )
   end
       
   if issue.admin_notice then
     ui.sidebarSection( function()
-      ui.heading { level = 3, content = _"Administrative notice:" }
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = _"Administrative notice:" }
       slot.put(encode.html_newlines(issue.admin_notice)) 
     end )
   end
