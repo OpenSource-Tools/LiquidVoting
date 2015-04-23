@@ -7,7 +7,9 @@ ui.title ( function ()
     ui.link {
       attr = { class = "unit" },
       content = function()
-        ui.tag{ content = area.unit.name }
+        ui.tag{ content = function() 
+                ui.tag{ tag = 'span', content = area.unit.name  }
+        end}
       end,
       module = "unit", view = "show",
       id = area.unit.id
@@ -17,7 +19,9 @@ ui.title ( function ()
   ui.tag { tag = 'li', attr = { class = 'area' }, content = function()
       ui.link {
         content = function()
-          ui.tag{ content = area.name }
+          ui.tag{ content = function()
+                ui.tag{ tag = 'span', content = area.name  }
+        end}
         end,
         module = "area", view = "show",
         id = area.id
