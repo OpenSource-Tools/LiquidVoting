@@ -1,6 +1,6 @@
 local unit = param.get ( "unit", "table" )
 
-ui.sidebar ( "tab-whatcanido", function ()
+ui.sidebar ( "tab tab-unit-sidebar", function ()
 
   ui.sidebarHeadWhatCanIDo()
   
@@ -10,10 +10,13 @@ ui.sidebar ( "tab-whatcanido", function ()
       ui.sidebarSection( function ()
         
         if not unit.delegation_info.first_trustee_id then
-          ui.heading{ level = 3, content = _"I want to delegate this organizational unit" }
+          ui.heading{ 
+  attr = { class = 'h3' },
+                  level = 3, content = _"I want to delegate this organizational unit" }
           ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
             ui.tag { tag = "li", content = function ()
               ui.link {
+      attr = { class = 'choosedelegatee' },
                 module = "delegation", view = "show", params = {
                   unit_id = unit.id,
                 },
@@ -36,11 +39,14 @@ ui.sidebar ( "tab-whatcanido", function ()
               }
             }
           end }
-          ui.heading{ level = 3, content = _"You delegated this unit" }
+          ui.heading{ 
+          attr = { class = 'h3' },
+          level = 3, content = _"You delegated this unit" }
 
           ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
             ui.tag { tag = "li", content = function ()
               ui.link {
+      attr = { class = 'changerevoke' },
                 module = "delegation", view = "show", params = {
                   unit_id = unit.id,
                 },
@@ -54,9 +60,11 @@ ui.sidebar ( "tab-whatcanido", function ()
       end )
 
       ui.sidebarSection( function()
-        ui.heading { level = 3, content = _"I want to start a new initiative" }
+        ui.heading { 
+  attr = { class = 'h3' },
+                level = 3, content = _"I want to start a new initiative" }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
-          ui.tag { tag = "li", content = _"Open the appropriate subject area where your issue fits in and follow the instruction on that page." }
+          ui.tag { tag = "li", attr = { class = "openthearea" }, content = _"Open the appropriate subject area where your issue fits in and follow the instruction on that page." }
         end } 
       end )
     
