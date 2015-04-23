@@ -2,10 +2,11 @@ local issue = param.get("issue", "table")
 local hide_initiatives = param.get("hide_initiatives", atom.boolean)
 local highlight_initiative_id = param.get ( "highlight_initiative_id", "number" )
 
-ui.sidebar ( "tab-whatcanido", function ()
+ui.sidebar ( "tab tab-issue-competing", function ()
 
   ui.sidebarHead( function()
     ui.heading {
+  attr = { class = 'h2' },
       level = 2,
       content = _"Competing initiatives"
     }
