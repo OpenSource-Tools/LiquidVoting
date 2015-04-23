@@ -16,7 +16,7 @@ end
 local function thumbs_up()
               ui.i { attr = { class = 'fa fa-thumbs-up tooltip' }, content = function()
                 ui.tag { tag = 'span', content = function() 
-                  ui.tag { tag = 'span', content = _"you are subscribed" }
+                  ui.tag { tag = 'span', content = _("You are supporter") }
                 end}
               end}
 end
