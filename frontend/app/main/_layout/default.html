@@ -106,7 +106,14 @@
                 $('.event_time').each(function(){
                         var et = $(this);
                         et.countdown(et.html(), function(event){
-                                et.html(event.strftime('%D days %H:%M:%S'));
+                                if (event.type == 'finish')
+                                {
+                                        et.html('Finished.')
+                                }
+                                else
+                                {
+                                    et.html(event.strftime('%D days %H:%M:%S'));
+                                }
                         });
                 });
         });
