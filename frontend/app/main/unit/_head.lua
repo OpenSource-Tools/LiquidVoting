@@ -1,13 +1,19 @@
 local unit = param.get("unit", "table")
 
+local info = unit.delegation_info
+local klass = "unit last"
+if info.own_participation or info.first_trustee_id then
+        klass = klass .. " delegated"
+end
+
 ui.title ( function ()
 
-  ui.tag{ attr = { class = "unit" }, content = function()
+  ui.tag{ tag = 'li', attr = { class = klass }, content = function()
     -- unit link
     ui.link {
       attr = { class = "unit" },
-      content = function()
-        ui.tag{ attr = { class = "name" }, content = unit.name }
+      content = function() 
+              ui.tag{ tag = 'span', content = unit.name}
       end,
       module = "unit", view = "show",
       id = unit.id
