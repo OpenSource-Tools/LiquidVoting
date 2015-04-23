@@ -2,6 +2,10 @@ local initiative = param.get("initiative", "table")
 local batteled_initiative = param.get("battled_initiative", "table")
 
 local grey = "#eee"
+local green = "#27ae60"
+local blue = "#34495e"
+local red = "#e74c3c"
+local orange = "#f39c12"
 
 if initiative.issue.fully_frozen and initiative.issue.closed
    and initiative.negative_votes and initiative.positive_votes and initiative.rank ~= 1 then
@@ -25,8 +29,8 @@ if initiative.issue.fully_frozen and initiative.issue.closed
         width = 100,
         bars = {
           { color = grey, value = max_value - negative_votes },
-          { color = "#a00", value = negative_votes },
-          { color = "#0a0", value = positive_votes },
+          { color = red, value = negative_votes },
+          { color = green, value = positive_votes },
           { color = grey, value = max_value - positive_votes },
         }
       }
@@ -51,10 +55,10 @@ else
     max_value = max_value,
     width = 100,
     quorum = max_value * quorum,
-    quorum_color = "#00F",
+    quorum_color = blue,
     bars = {
-      { color = "#5a5", value = (initiative.satisfied_supporter_count or 0) },
-      { color = "#fa5", value = (initiative.supporter_count or 0) - (initiative.satisfied_supporter_count or 0) },
+      { color = green, value = (initiative.satisfied_supporter_count or 0) },
+      { color = orange, value = (initiative.supporter_count or 0) - (initiative.satisfied_supporter_count or 0) },
       { color = grey, value = max_value - (initiative.supporter_count or 0) },
     }
   }
