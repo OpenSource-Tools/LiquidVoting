@@ -1,0 +1,71 @@
+.btn {
+	padding: 4px 6px;
+	// background-color: $color1;
+	display: inline-block;
+	// border: 1px solid #666;
+	@include border-radius(5px);
+	color: #FFF;
+
+	&:hover {
+		// background-color: darken($color1, 5%);
+	}
+}
+
+.btn-support {
+
+	@extend .btn;
+	a {
+		display: none;
+	}
+
+	> div {
+		display: none;
+	}
+
+	&.supporter {
+		background-color: $nephritis;
+		color: #FFF;
+
+		&:hover {
+			background-color: $pomegranate;
+
+			a {
+				display: inline-block;
+			}
+		}
+	}
+}
+
+
+.bargraph {
+    display: inline-block;
+    height: 14px;
+
+    > div {
+	    margin: 0;
+	    padding: 0;
+	    display: inline-block;
+	    height: inherit;
+	}
+}
+
+
+.btn-interest {
+	visibility: hidden;
+
+	br {
+		display: none;
+	}
+
+	i {
+		visibility: visible;
+	}
+
+	a {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		@extend .btn;
+		visibility: visible;
+	}
+}

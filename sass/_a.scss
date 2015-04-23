@@ -1,0 +1,9 @@
+a, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.disabled {
+    color: #777777;
+    cursor: default;
+}

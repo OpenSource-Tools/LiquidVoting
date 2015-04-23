@@ -1,0 +1,491 @@
+// $issue-bg: rgba(0,0,0,0.07);;
+
+.e-initiative {
+    position: relative;
+    background-color: #FFF;
+    line-height: 40px;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    // overflow: hidden;
+    white-space: nowrap;
+    padding: 0 20px;
+
+    .bargraph {
+        position: absolute;
+        right: 20px;
+        top: 14px;
+    }
+
+    .icon16 {
+        display: none;
+    }
+
+    .initiative_name {
+        // &:before {
+        //     @extend .fa;
+        //     content: "\f0eb";
+        //     margin-right: 5px;
+        // }
+        a:hover {
+            color: $color1;
+        }
+
+        i {
+            // position: absolute;
+            // top: 12px;
+            // right: 135px;
+            // cursor: pointer;
+            margin-left: 10px;
+
+            &:hover {
+                color: $color1;
+            }
+        }
+    }
+}
+
+.e-issue {
+    position: relative;
+    margin-bottom: 50px;
+    padding: 15px 0px 30px 0px;
+    background-color: $issue-bg;
+    @include border-radius(10px);
+    outline: none;
+
+}
+
+ul.initiatives {
+    br {
+        display: none;
+    }
+
+    > .result {
+        padding: 0 20px 10px 20px;
+    }
+
+    li {
+        position: relative;
+
+        .initiative {
+            @extend .e-initiative
+        }
+
+        .result {
+            position: absolute;
+            top: 0;
+            right: 0;
+            line-height: 40px;
+            @include font-size(14px);
+            color: $text-light;
+            padding-right: 20px;
+        }
+    }
+}
+
+
+.section {
+    position: relative;
+
+    input, textarea {
+        padding: 6px 10px;
+        border: none;
+        @include border-radius(4px);
+        @include font-size(15px);
+        outline: none;
+        margin: 5px 0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .tooltip > span > span {
+        width: 140px;
+        margin-left: -70px;
+        text-align: center;
+    }
+    
+    .sectionHead {
+    }
+
+    &.issues {
+
+        .row {
+            @extend .e-issue;
+
+            .issue_context {
+                // position: absolute;
+                // right: 0;
+                // top: 0;
+                // line-height: 25px;
+                // padding: 5px;
+
+                a {
+                    // color: #666;
+                    // padding: 0 5px;
+                    // @include font-size(14px);
+
+                    // &:before {
+                        // margin-right: 3px;
+                    // }
+                }
+
+                i {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    // color: $color1;
+
+                    &:hover {
+                        color: $color1;
+                    }
+                }
+
+                a.delegation_info {
+                    position: absolute;
+                    top: 10px;
+                    right: 200px;
+
+                    // &:before {
+                    //     @extend .fa;
+                    //     content: "\f0a4";
+                    //     @include font-size(18px);
+                    // }
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        @include border-radius(20px);
+                    }
+                }
+
+                a.unit, a.area {
+                    position: absolute;
+                    // top: -28px;
+                    bottom: 4px;
+                    @include font-size(15px);
+                    color: #666;
+                    width: 120px;
+                    line-height: 26px;
+                    padding: 0 8px;
+                    text-align: center;
+                    // @include border-radius-separate(4px, 0px, 4px, 0px);
+                    @include border-radius(4px);
+
+                    &:before {
+                        @extend .fa;
+                        margin-right: 8px;
+                    }
+
+                    // &:after {
+                    //     position: absolute;
+                    //     content: " ";
+                    //     display: block;
+                    //     top: 0;
+                    //     width: 0;
+                    //     height: 0;
+                    //     z-index: 3;
+                    //     right: -8px;
+                    //     border-left: 8px solid rgba(0,0,0,0.0);
+                    //     border-top: 13px solid transparent;
+                    //     border-bottom: 13px solid transparent;
+                    // }
+
+                }
+
+                a.unit {
+                    // background-color: rgba(0,0,0,0.2);
+                    left: 0px;
+
+                    &:before {
+                        content: "\f0ac";
+                    }
+                }
+
+                a.area {
+                    // background-color: rgba(0,0,0,0.1);
+                    left: 130px;
+
+                    &:before {
+                        content: "\f0b1";
+                    }
+                }
+            }
+
+            .issue_info {
+                margin-bottom: 5px;
+                padding: 0 20px;
+                @include font-size(18px);
+                font-weight: bold;
+
+                a {
+                    // &:before {
+                    //     @extend .fa;
+                    //     content: "\f192";
+                    //     margin-right: 10px;
+                    // }
+                    &:hover {
+                        color: $color1;
+                    }                 
+                }
+            }
+
+            .event_info {
+                color: $text-light;
+                @include font-size(13px);
+                margin-bottom: 10px;
+                padding: 0 20px;
+
+                .event_time {
+                }
+            }
+
+            .initiative_list {
+
+            }
+        }
+    }
+
+    &.section-issue {
+        position: relative;
+        @extend .e-issue;
+        // padding: 15px 20px 20px 20px;
+        // background-color: $issue-bg;
+        margin-top: 110px;
+
+        .tabs {
+            position: absolute;
+            top: -22px;
+            right: 10px;
+
+            a {
+                padding: 5px 15px;
+                // line-height: 25px;
+                @include border-radius-separate(5px,5px,0,0);
+
+                &.active {
+                    background-color: $color2;
+                }
+            }
+        }
+
+        .title {
+            padding: 0 20px;
+        }
+
+        ul.initiatives {
+            br {
+                display: none;
+            }
+
+            .result {
+                padding: 0 20px 10px 20px;
+            }
+
+            li {
+                @extend .e-initiative;
+            }
+        }
+
+        h1 {
+            // &:before {
+            //     @extend .fa;
+            //     content: "\f192";
+            //     margin-right: 10px;
+            // }
+        }
+    }
+
+    &.section-initiative, &.section-initiative-new {
+        margin-top: 120px;
+        padding: 17px 20px;
+        background-color: #FFF;
+
+        h1 {
+            @include font-size(20px);
+
+            // &:before {
+            //     @extend .fa;
+            //     content: "\f0eb";
+            //     margin-right: 10px;
+            // }
+        }
+
+        .btn-support {
+            position: absolute;
+            top: 35px;
+            right: 10px;
+        }
+
+        .initiators {
+        	position: absolute;
+        	top: -40px;
+        	left: 10px;
+
+            span > span {
+                padding-left: 10px;
+            }
+        }
+
+        .links {
+        	position: absolute;
+        	top: 10px;
+        	right: 10px;
+        }
+        .bargraph {
+        	position: absolute;
+        	top: -20px;
+        	right: 0;
+        }
+
+    }
+
+    &.suggestions {
+        margin: 20px 0 40px 0;
+
+
+        .sectionHead {
+            h1 {
+                // margin: 0 0 10px 0;
+            }
+            > div {
+                display: none;
+            }
+        }
+
+        .suggestion {
+            position: relative;
+            margin-top: 50px;
+            background-color: rgba(255,255,255,0.7);
+            padding: 10px 20px;
+            // @include border-radius(10px);
+            // border: 1px solid $color2;
+
+            .suggestion-rating {
+                position: absolute;
+                right: 0px;
+                top: -28px;
+            }
+
+            a.suggestion-more, a.suggestion-less, a.suggestion-details {
+                position: absolute;
+                bottom: -22px;
+                color: #333;
+
+                &:hover {
+                    color: $color1;
+                }
+            }
+
+            a.suggestion-more, a.suggestion-less {
+                left: 0;                
+            }
+
+            a.suggestion-details {
+                right: 0;
+            }
+
+            span.microAvatar {
+                position: absolute;
+                top: -35px;
+                left: 5px;
+            }
+
+            &.folded {
+                .rating {
+                    display: none;
+                }
+                a.suggestion-less {
+                    display: none;
+                }
+            }
+            &.unfolded {
+                .rating {
+                    display: block;
+                }
+                a.suggestion-more {
+                    display: none;
+                }
+            }
+        }
+
+        .suggestion-text {
+            p {
+                margin-bottom: 5px;
+            }
+            a {
+                // border: 1px solid #333;
+                // background-color: rgba(0,0,0,0.1);
+                // padding: 3px 8px;
+                // margin: 5px 5px 0 0;
+                // @include border-radius(4px);
+
+                &:hover {
+                    // background-color: rgba(0,0,0,0.2);
+                }
+            }
+        }
+    }
+
+    &.detail {
+    	margin-top: 30px;
+    	color: #666;
+
+    	.sectionHead {
+    		h1 {
+    			color: #666;
+    			margin-bottom: 10px;
+    		}
+    	}
+
+    	.sectionRow {
+    		@include font-size(13px);
+    	}
+
+        .sectionHead {            
+            h2 {
+                margin: 20px 0 20px 0;
+                @include font-size(18px);
+            }
+        }
+    }
+
+    &.section-member {
+
+    }
+
+    &.section-login {
+        .sectionHead {
+            position: relative;
+
+            .right {
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                a {
+                    padding: 0 10px;
+                }
+            }
+        }
+
+        .row {
+            label {
+                display: inline-block;
+                width: 120px;
+            }
+        }
+    }
+
+    &.section-history {
+        .ui_filter {
+            display: none;
+        }
+
+        .event {
+            border-top: 10px solid $background;
+            padding: 15px 20px;
+        }
+    }
+
+}

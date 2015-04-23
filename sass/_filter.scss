@@ -1,0 +1,45 @@
+.ui_filter {
+    position: relative;
+    margin-bottom: 50px;
+    // margin-top: 35px;
+    @include font-size(14px);
+
+    // &:before {
+    //     position: absolute;
+    //     top: -20px;
+    //     left: 0;
+    //     content: "Filters";
+    //     @include font-size(18px);
+    //     font-weight: bold;
+    // }
+
+    .ui_filter_head {
+        line-height: 2.2;
+        border: 1px solid #666;
+        margin-bottom: -1px;
+
+        a {
+            color: #666;
+            white-space: nowrap;
+            padding: 3px 10px;
+            // margin-right: -2px;
+            // @include border-radius(6px);
+            // background-color: rgba(0,0,0,0.1);
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &.active {
+                text-decoration: underline;
+                // background-color: $color1;
+                // background-color: rbga(63,153,209, 0.4);
+                // color: #FFF;
+            }
+        }
+    }
+}
+
+.ui_filter_content {
+    // margin-top: 50px;
+}
