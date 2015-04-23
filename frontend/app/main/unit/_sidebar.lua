@@ -27,10 +27,11 @@ if member then
 end
 
   
-ui.sidebar ( "tab-whatcanido", function ()
+ui.sidebar ( "tab tab-unit-subjects", function ()
 
   ui.sidebarHead( function ()
     ui.heading {
+  attr = { class = 'h2' },
       level = 2, content = _"Subject areas"
     }
   end )
@@ -41,7 +42,7 @@ ui.sidebar ( "tab-whatcanido", function ()
       
       for i, area in ipairs ( areas ) do
         
-        ui.container { attr = { class = "sidebarRow" }, content = function ()
+        ui.container { attr = { class = "row" }, content = function ()
         
           if member then
             local delegation = Delegation:by_pk(member.id, nil, area.id, nil)
@@ -60,7 +61,12 @@ ui.sidebar ( "tab-whatcanido", function ()
           end
         
           if area.subscribed then
-            ui.image { attr = { class = "icon16 star" }, static = "icons/48/star.png" }
+            -- ui.image { attr = { class = "icon16 star" }, static = "icons/48/star.png" }
+              ui.i { attr = { class ='fa fa-star tooltip' }, content = function()
+                      ui.tag { tag = 'span', content = function()
+                              ui.tag { tag = 'span', content = _("You are subscribed") }
+                      end}
+              end}
           end
           
           ui.link {
