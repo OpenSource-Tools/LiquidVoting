@@ -4,7 +4,7 @@ if app.session.member then
           content = _"Notifications"
   }end)
     
-  ui.section( function() 
+  ui.section('section-notifications', function() 
 
     ui.sectionHead( function()
       ui.heading{ level = 1, content = _"Notifications" }
