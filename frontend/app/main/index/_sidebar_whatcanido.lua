@@ -1,4 +1,4 @@
-ui.sidebar ( "tab-whatcanido", function ()
+ui.sidebar ( "tab tab-index-head", function ()
 
   -- ui.sidebarHeadWhatCanIDo()
 
