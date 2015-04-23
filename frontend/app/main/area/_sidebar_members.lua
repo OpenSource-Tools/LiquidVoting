@@ -12,6 +12,7 @@ ui.sidebar ( "tab-members", function ()
   ui.sidebarHead( function ()
     ui.heading {
       level = 2,
+      attr = { class = 'h2' },
       content = _("Subscribed members (#{count})", {
         count = area.direct_member_count
       })
@@ -21,11 +22,12 @@ ui.sidebar ( "tab-members", function ()
     module = 'member', view   = '_list', params = {
       members_selector = members_selector,
       no_filter = true, no_paginate = true,
-      member_class = "sidebarRow sidebarRowNarrow"
+      member_class = "row narrow"
    }
   }
   if (area.direct_member_count or 0) > members_selector:count() then
     ui.link {
+      attr = { class = 'showmembers' },
       text = _"Show all members",
       module = "member", view = "list"
     }
