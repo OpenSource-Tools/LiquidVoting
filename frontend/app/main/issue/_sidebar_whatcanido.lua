@@ -8,6 +8,14 @@ end
 
 local privileged_to_vote = app.session.member and app.session.member:has_voting_right_for_unit_id(issue.area.unit_id)
 
+local function thumbs_up()
+              ui.i { attr = { class = 'fa fa-thumbs-up tooltip' }, content = function()
+                ui.tag { tag = 'span', content = function() 
+                  ui.tag { tag = 'span', content = _("You are supporter") }
+                end}
+              end}
+end
+
 local active_trustee_id
 if member then
   if not issue.member_info.own_participation then
@@ -19,7 +27,7 @@ if member then
   end
 end
 
-ui.sidebar ( "tab-whatcanido", function ()
+ui.sidebar ( "tab tab-issue-initiative", function ()
 
   ui.sidebarHeadWhatCanIDo()
       
@@ -71,8 +79,10 @@ ui.sidebar ( "tab-whatcanido", function ()
     not initiative.revoked 
   then
 
-    ui.container { attr = { class = "sidebarRow" }, content = function ()
-      ui.heading { level = 3, content = function()
+    ui.container { attr = { class = "row" }, content = function ()
+      ui.heading { 
+          attr = { class = 'h3' },
+              level = 3, content = function()
         ui.tag { content = _"You are initiator of this initiative" }
       end }
       ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
@@ -81,6 +91,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         else
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "editproposal" },
               module = "draft", view = "new",
               params = { initiative_id = initiative.id },
               content = _"edit proposal and/or reasons"
@@ -97,6 +108,7 @@ ui.sidebar ( "tab-whatcanido", function ()
           if #initiative.initiators > 1 then
             ui.tag { tag = "li", content = function ()
               ui.link{
+                attr = { class = "removeinitiator" },
                 module = "initiative", view = "remove_initiator",
                 params = { initiative_id = initiative.id },
                 content = _"remove an initiator"
@@ -105,6 +117,7 @@ ui.sidebar ( "tab-whatcanido", function ()
           end
           ui.tag { tag = "li", content = function ()
             ui.link{
+                attr = { class = "revokeinitiative" },
               module = "initiative", view = "revoke", id = initiative.id,
               content = _"revoke initiative"
             }
@@ -116,13 +129,16 @@ ui.sidebar ( "tab-whatcanido", function ()
 
   -- invited as initiator
   if initiator and initiator.accepted == nil and not initiative.issue.half_frozen and not initiative.issue.closed then
-    ui.container { attr = { class = "sidebarRow highlighted" }, content = function ()
-      ui.heading { level = 3, content = function()
+    ui.container { attr = { class = "row highlighted" }, content = function ()
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = function()
         ui.tag { content = _"You are invited to become initiator of this initiative" }
       end }
       ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
         ui.tag{ tag = "li", content = function ()
           ui.link{
+                attr = { class = "acceptinvitation" },
             content = _"accept invitation",
             module = "initiative",
             action = "accept_invitation",
@@ -141,6 +157,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         
         ui.tag{ tag = "li", content = function ()
           ui.link{
+                attr = { class = "refuseinvitation" },
             content = _"refuse invitation",
             module = "initiative",
             action = "reject_initiator_invitation",
@@ -179,11 +196,17 @@ ui.sidebar ( "tab-whatcanido", function ()
         }
       end }
       if issue.member_info.own_delegation_scope == "unit" then
-        ui.heading{ level = 3, content = _"You delegated this organizational unit" }
+        ui.heading{ 
+  attr = { class = 'h3' },
+                level = 3, content = _"You delegated this organizational unit" }
       elseif issue.member_info.own_delegation_scope == "area" then
-        ui.heading{ level = 3, content = _"You delegated this subject area" }
+        ui.heading{ 
+  attr = { class = 'h3' },
+                level = 3, content = _"You delegated this subject area" }
       elseif issue.member_info.own_delegation_scope == "issue" then
-        ui.heading{ level = 3, content = _"You delegated this issue" }
+        ui.heading{ 
+  attr = { class = 'h3' },
+                level = 3, content = _"You delegated this issue" }
       end
 
       ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
@@ -191,6 +214,7 @@ ui.sidebar ( "tab-whatcanido", function ()
            issue.member_info.own_delegation_scope == "unit" then
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "showdelegation" },
               module = "delegation", view = "show", params = {
                 issue_id = issue.id,
                 initiative_id = initiative and initiative.id or nil
@@ -202,6 +226,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         if issue.member_info.own_delegation_scope == "unit" then
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "showdelegation" },
               module = "delegation", view = "show", params = {
                 unit_id = issue.area.unit_id,
               },
@@ -213,6 +238,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         elseif issue.member_info.own_delegation_scope == "area" then
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "showdelegation" },
               module = "delegation", view = "show", params = {
                 area_id = issue.area_id,
               },
@@ -223,6 +249,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         if issue.member_info.own_delegation_scope == nil then
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "showdelegation" },
               module = "delegation", view = "show", params = {
                 issue_id = issue.id,
                 initiative_id = initiative and initiative.id or nil
@@ -233,6 +260,7 @@ ui.sidebar ( "tab-whatcanido", function ()
         elseif issue.member_info.own_delegation_scope == "issue" then
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "showdelegation" },
               module = "delegation", view = "show", params = {
                 issue_id = issue.id,
                 initiative_id = initiative and initiative.id or nil
@@ -266,11 +294,14 @@ ui.sidebar ( "tab-whatcanido", function ()
            }
           end
         end }
-        ui.heading{ level = 3, content = _("You are interested in this issue", { id = issue.id }) }
+        ui.heading{ 
+  attr = { class = 'h3' },
+                level = 3, content = _("You are interested in this issue", { id = issue.id }) }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           if issue.member_info.weight and issue.member_info.weight > 1 then
             ui.tag { tag = "li", content = function ()
               ui.link {
+                attr = { class = "showincomingdelegation" },
                 module = "delegation", view = "show_incoming",
                 params = { issue_id = issue.id, member_id = app.session.member_id },
                 content = _("you have #{count} incoming delegations", {
@@ -281,6 +312,7 @@ ui.sidebar ( "tab-whatcanido", function ()
           end
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "updateinterest" },
               module = "interest", action = "update",
               routing = { default = {
                 mode = "redirect", module = view_module, view = "show", id = view_id
@@ -293,10 +325,13 @@ ui.sidebar ( "tab-whatcanido", function ()
       end )
     else
       ui.sidebarSection( function ()
-        ui.heading{ level = 3, content = _("I want to participate in this issue", { id = issue.id }) }
+        ui.heading{ 
+  attr = { class = 'h3' },
+                level = 3, content = _("I want to participate in this issue", { id = issue.id }) }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "updateinterest2" },
               module = "interest", action = "update", 
               params = { issue_id = issue.id },
               routing = { default = {
@@ -305,7 +340,7 @@ ui.sidebar ( "tab-whatcanido", function ()
               text = _"add my interest"
             }
           end }
-          ui.tag { tag = "li", content = _"browse through the competing initiatives" }
+          ui.tag { tag = "li", attr = {class = 'browseinitiatives'}, content = _"browse through the competing initiatives" }
         end }
       end )
     end
@@ -313,13 +348,16 @@ ui.sidebar ( "tab-whatcanido", function ()
     if initiative then
       
       if not initiative.member_info.supported or active_trustee_id then
-        ui.container { attr = { class = "sidebarRow" }, content = function ()
-          ui.heading { level = 3, content = function()
+        ui.container { attr = { class = "row" }, content = function ()
+          ui.heading { 
+  attr = { class = 'h3' },
+                  level = 3, content = function()
             ui.tag { content = _"I like this initiative and I want to support it" }
           end }
           ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
             ui.tag { tag = "li", content = function ()
               ui.link {
+                attr = { class = "addsupport" },
                 module = "initiative", action = "add_support", 
                 routing = { default = {
                   mode = "redirect", module = "initiative", view = "show", id = initiative.id
@@ -332,18 +370,22 @@ ui.sidebar ( "tab-whatcanido", function ()
         end }
           
       else -- if not supported
-        ui.container { attr = { class = "sidebarRow" }, content = function ()
+        ui.container { attr = { class = "row" }, content = function ()
           if initiative.member_info.satisfied then
             ui.image{ attr = { class = "right icon48" }, static = "icons/32/support_satisfied.png" }
+            --thumbs_up()
           else
             ui.image{ attr = { class = "right icon48" }, static = "icons/32/support_unsatisfied.png" }
           end
-          ui.heading { level = 3, content = _"You are supporting this initiative" }
+          ui.heading { 
+  attr = { class = 'h3' },
+                  level = 3, content = _"You are supporting this initiative" }
           ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
             if not initiative.member_info.satisfied then
               ui.tag { tag = "li", content = function ()
                 ui.tag { content = function ()
                   ui.link {
+                attr = { class = "suggestions" },
                     external = "#suggestions",
                     content = _"you restricted your support by rating suggestions as must or must not"
                   }
@@ -353,6 +395,7 @@ ui.sidebar ( "tab-whatcanido", function ()
             ui.tag { tag = "li", content = function ()
               ui.tag { content = function ()
                 ui.link {
+                attr = { class = "removesupport2" },
                   xattr = { class = "btn btn-remove" },
                   module = "initiative", action = "remove_support", 
                   routing = { default = {
@@ -368,8 +411,10 @@ ui.sidebar ( "tab-whatcanido", function ()
 
       end -- not supported
       
-      ui.container { attr = { class = "sidebarRow" }, content = function ()
-        ui.heading { level = 3, content = _"I want to improve this initiative" }
+      ui.container { attr = { class = "row" }, content = function ()
+        ui.heading { 
+  attr = { class = 'h3' },
+                level = 3, content = _"I want to improve this initiative" }
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           if issue.state == "verification" then
             ui.tag { tag = "li", content = _"this issue is in verification phase, therefore the initiative text cannot be updated anymore" }
@@ -378,17 +423,18 @@ ui.sidebar ( "tab-whatcanido", function ()
           else
             
             if initiative.member_info.initiated then
-              ui.tag { tag = "li", content =_"take a look at the suggestions of your supporters" }
-              ui.tag { tag = "li", content =_"if you like to implement a suggestion in your proposal and/or reasons, update your initiative draft" }
-              ui.tag { tag = "li", content =_"to argue about suggestions, just add your arguments to your reasons in the initiative draft, so your supporters can learn about your opinion" }
+              ui.tag { tag = "li", attr = { class = 'takealookatsuggestions'}, content =_"take a look at the suggestions of your supporters" }
+              ui.tag { tag = "li", attr = { class = 'ifyouliketo'}, content =_"if you like to implement a suggestion in your proposal and/or reasons, update your initiative draft" }
+              ui.tag { tag = "li", attr = { class = 'toargueabout'}, content =_"to argue about suggestions, just add your arguments to your reasons in the initiative draft, so your supporters can learn about your opinion" }
             end
             
             if not initiative.member_info.supported or active_trustee_id then
-              ui.tag { tag = "li", content =_"add your support (see above) and rate or write new suggestions (and thereby restrict your support to certain conditions if necessary)" }
+              ui.tag { tag = "li", attr = { class = 'addyoursupportseeabove'}, content =_"add your support (see above) and rate or write new suggestions (and thereby restrict your support to certain conditions if necessary)" }
             else
-              ui.tag { tag = "li", content = _"take a look at the suggestions (see left) and rate them" }
+              ui.tag { tag = "li", attr = { class = 'takealookatthe'}, content = _"take a look at the suggestions (see left) and rate them" }
               ui.tag { tag = "li", content = function ()
                 ui.link {
+                attr = { class = "newsuggestion" },
                   module = "suggestion", view = "new", params = {
                     initiative_id = initiative.id
                   },
@@ -409,19 +455,25 @@ ui.sidebar ( "tab-whatcanido", function ()
     then
       ui.sidebarSection( function ()
         if initiative then
-          ui.heading{ level = 3, content = _"I don't like this initiative and I want to add my opinion or counter proposal" }
+          ui.heading{ 
+  attr = { class = 'h3' },
+                  level = 3, content = _"I don't like this initiative and I want to add my opinion or counter proposal" }
         else
-          ui.heading{ level = 3, content = _"I don't like any of the initiative in this issue and I want to add my opinion or counter proposal" }
+          ui.heading{ 
+  attr = { class = 'h3' },
+                  level = 3, content = _"I don't like any of the initiative in this issue and I want to add my opinion or counter proposal" }
         end
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "showissue" },
               module = "issue", view = "show", id = issue.id,
               content = _"take a look at the competing initiatives"
             }
           end }
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "initiativenew" },
               module = "initiative", view = "new", 
               params = { issue_id = issue.id },
               content = _"start a new competing initiative"
@@ -437,11 +489,14 @@ ui.sidebar ( "tab-whatcanido", function ()
 
     if not issue.member_info.first_trustee_id then
       ui.sidebarSection( function ()
-        ui.heading{ level = 3, content = _"I want to delegate this issue" }
+        ui.heading{ 
+  attr = { class = 'h3' },
+                level = 3, content = _"I want to delegate this issue" }
       
         ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
           ui.tag { tag = "li", content = function ()
             ui.link {
+                attr = { class = "chooseissue" },
               module = "delegation", view = "show", params = {
                 issue_id = issue.id,
                 initiative_id = initiative and initiative.id or nil
@@ -456,13 +511,16 @@ ui.sidebar ( "tab-whatcanido", function ()
   end
   
   if initiator and initiator.accepted == false then
-    ui.container { attr = { class = "sidebarRow" }, content = function ()
-      ui.heading { level = 3, content = function()
+    ui.container { attr = { class = "row" }, content = function ()
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = function()
         ui.tag { content = _"You refused to become initiator of this initiative" }
       end }
       ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
         ui.tag{ tag = "li", content = function ()
           ui.link{
+                attr = { class = "redirectinitiatve" },
             text   = _"allow invitation again",
             module = "initiative",
             action = "remove_initiator",
@@ -499,13 +557,16 @@ ui.sidebar ( "tab-whatcanido", function ()
     elseif issue.state == "voting" then
       if not issue.member_info.direct_voted then
         if not issue.member_info.non_voter then
-          ui.container { attr = { class = "sidebarRow" }, content = function ()
-            ui.heading { level = 3, content = _"I like to vote on this issue:" }
+          ui.container { attr = { class = "row" }, content = function ()
+            ui.heading { 
+  attr = { class = 'h3' },
+                    level = 3, content = _"I like to vote on this issue:" }
             ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
               ui.tag { tag = "li", content = function ()
                 ui.tag { content = function ()
                   if not issue.closed then
                     ui.link {
+                attr = { class = "votenow" },
                       xattr = { class = "btn btn-vote" },
                       module = "vote", view = "list", 
                       params = { issue_id = issue.id },
@@ -517,12 +578,15 @@ ui.sidebar ( "tab-whatcanido", function ()
             end }
           end }
         end
-        ui.container { attr = { class = "sidebarRow" }, content = function ()
+        ui.container { attr = { class = "row" }, content = function ()
           if not issue.member_info.non_voter then
-            ui.heading { level = 3, content = _"I don't like to vote this issue (myself):" }
+            ui.heading { 
+  attr = { class = 'h3' },
+                    level = 3, content = _"I don't like to vote this issue (myself):" }
             ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
               ui.tag { tag = "li", content = function ()
                 ui.link{
+                attr = { class = "novote" },
                   content = _"do not notify me about this voting anymore",
                   module = "vote",
                   action = "non_voter",
@@ -540,10 +604,13 @@ ui.sidebar ( "tab-whatcanido", function ()
               end }
             end }
           else
-            ui.heading { level = 3, content = _"You do not like to vote this issue (yourself)" }
+            ui.heading { 
+  attr = { class = 'h3' },
+                    level = 3, content = _"You do not like to vote this issue (yourself)" }
             ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
               ui.tag { tag = "li", content = function ()
                 ui.link{
+                attr = { class = "discard" },
                   in_brackets = true,
                   content = _"discard",
                   module = "vote",
@@ -564,13 +631,16 @@ ui.sidebar ( "tab-whatcanido", function ()
           end
         end }
       else
-        ui.container { attr = { class = "sidebarRow" }, content = function ()
-          ui.heading { level = 3, content = _"I like to change/revoke my vote:" }
+        ui.container { attr = { class = "row" }, content = function ()
+          ui.heading { 
+  attr = { class = 'h3' },
+                  level = 3, content = _"I like to change/revoke my vote:" }
           ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
             ui.tag { tag = "li", content = function ()
               ui.tag { content = function ()
                 if not issue.closed then
                   ui.link {
+                attr = { class = "changevote" },
                     xattr = { class = "btn btn-vote" },
                     module = "vote", view = "list", 
                     params = { issue_id = issue.id },
@@ -583,6 +653,7 @@ ui.sidebar ( "tab-whatcanido", function ()
               ui.tag { content = function ()
                 if not issue.closed then
                   ui.link {
+                attr = { class = "voteupdate" },
                     module = "vote", action = "update",
                     params = {
                       issue_id = issue.id,
@@ -614,15 +685,19 @@ ui.sidebar ( "tab-whatcanido", function ()
   end
   
   if issue.closed then
-    ui.container { attr = { class = "sidebarRow" }, content = function ()
-      ui.heading { level = 3, content = _"This issue is closed" }
+    ui.container { attr = { class = "row" }, content = function ()
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = _"This issue is closed" }
     end }
   end
   
   if initiative and config.tell_others and config.tell_others.initiative then
-    ui.container { attr = { class = "sidebarRow" }, content = function ()
+    ui.container { attr = { class = "row" }, content = function ()
         
-      ui.heading { level = 3, content = _"Tell others about this initiative:" }
+      ui.heading { 
+  attr = { class = 'h3' },
+              level = 3, content = _"Tell others about this initiative:" }
       ui.tag { tag = "ul", attr = { class = "ul" }, content = function ()
         
         for i, link in ipairs (config.tell_others.initiative(initiative)) do
