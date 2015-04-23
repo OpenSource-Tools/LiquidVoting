@@ -5,9 +5,11 @@ if member then
   units:load_delegation_info_once_for_member_id(member.id)
 else
   units = Unit:new_selector():add_where("active"):add_order_by("name"):exec()
-  ui.sidebar( "tab-whatcanido", function()
+  ui.sidebar( "tab tab-index-units", function()
     ui.sidebarHead( function()
-      ui.heading { level = 2, content = _"Organizational units" }
+      ui.heading { 
+              attr = { class = 'h2' },
+              level = 2, content = _"Organizational units" }
     end )
     ui.sidebarSection( function()
       execute.view { module = "unit", view = "_list" }
@@ -19,7 +21,7 @@ end
 
 for i, unit in ipairs(units) do
   
-  ui.sidebar ( "tab-whatcanido units", function ()
+  ui.sidebar ( "tab tab-sidebar-units", function ()
 
     local areas_selector = Area:new_selector()
       :reset_fields()
@@ -46,7 +48,7 @@ for i, unit in ipairs(units) do
     if #areas > 0 then
 
       ui.container {
-        attr = { class = "sidebarHead" },
+        attr = { class = "head" },
         content = function ()
           ui.heading { level = 2, content = function ()
             ui.link {
@@ -82,14 +84,22 @@ for i, unit in ipairs(units) do
         local subscribed_count = 0
         for i, area in ipairs(areas) do
 
-          local class = "sidebarRow"
+          local class = "row"
+          if area.subscribed then
+                  class = class .. " subscribed"
+          end
           class = class .. (not area.subscribed and " disabled" or "")
           
           ui.tag { tag = "div", attr = { class = class }, content = function ()
             
             if area.subscribed then
               local text = _"subscribed"
-              ui.image { attr = { class = "icon16 star", alt = text, title = text }, static = "icons/48/star.png" }
+              -- ui.image { attr = { class = "icon16 star", alt = text, title = text }, static = "icons/48/star.png" }
+              ui.i { attr = { class ='fa fa-star tooltip' }, content = function()
+                      ui.tag { tag = 'span', content = function()
+                              ui.tag { tag = 'span', content = _("You are subscribed") }
+                      end}
+              end}
               any_subscribed = true
               subscribed_count = subscribed_count +1
             end
@@ -129,7 +139,7 @@ for i, unit in ipairs(units) do
             text = _"show subject areas"
           end
           ui.script{ script = "$('.areas-" .. unit.id .. "').addClass('folded');" }
-          ui.tag { tag = "div", attr = { class = "sidebarRow moreLink whenfolded" }, content = function ()
+          ui.tag { tag = "div", attr = { class = "row moreLink whenfolded" }, content = function ()
             ui.link {
               attr = { 
                 onclick = "$('.areas-" .. unit.id .. "').removeClass('folded'); return false;"
@@ -137,7 +147,7 @@ for i, unit in ipairs(units) do
               text = text
             }
           end }
-          ui.tag { tag = "div", attr = { class = "sidebarRow moreLink whenunfolded" }, content = function ()
+          ui.tag { tag = "div", attr = { class = "row moreLink whenunfolded" }, content = function ()
             ui.link {
               attr = { 
                 onclick = "$('.areas-" .. unit.id .. "').addClass('folded'); return false;"
