@@ -216,10 +216,8 @@ end
 
 -- update the issue name, if we have one.
 --
-if issue_and_initiative then
-        if #issue_name > 0 then
-                local tmp = db:query({ "UPDATE issue SET name = ? WHERE id = ?", issue_name, issue.id}, "opt_object")
-        end
+if #issue_name > 0 then
+        local tmp = db:query({ "UPDATE issue SET name = ? WHERE id = ?", issue_name, issue.id}, "opt_object")
 end
 
 slot.put_into("notice", _"Initiative successfully created")
