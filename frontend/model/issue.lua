@@ -131,7 +131,7 @@ Issue:add_reference{
   ref                = "member_info",
   back_ref           = "issue",
   selector_generator = function(list, options)
-    assert(options.member_id, "member_id mandatory for member_info")
+    -- assert(options.member_id, "member_id mandatory for member_info")
     local ids = { sep = ", " }
     for i, object in ipairs(list) do
       local id = object.id
