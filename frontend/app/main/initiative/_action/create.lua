@@ -68,6 +68,24 @@ if tmp and tmp.text_entries_left < 1 then
   return false
 end
 
+
+-- are we creating issue and initiative at the same time?
+local issue_and_initiative = param['issue_name'] ~= nil
+
+local issue_name    = util.trim(param.get("issue_name"))
+if issue_and_initiative then
+        if #issue_name < 3 then
+                slot.put_into("error", _"Please enter a meaningful name for your issue!")
+                return false
+        end
+
+        if #issue_name > 140 then
+                slot.put_into("error", _"This issue name is too long!")
+                return false
+        end
+end
+
+
 local name = param.get("name")
 
 local name = util.trim(name)
@@ -197,9 +215,11 @@ end
 
 
 -- update the issue name, if we have one.
-local issue_name    = util.trim(param.get("issue_name"))
-if issue_name:len() > 0 then
-    local tmp = db:query({ "UPDATE issue SET name = ? WHERE id = ?", issue_name, issue.id}, "opt_object")
+--
+if issue_and_initiative then
+        if #issue_name > 0 then
+                local tmp = db:query({ "UPDATE issue SET name = ? WHERE id = ?", issue_name, issue.id}, "opt_object")
+        end
 end
 
 slot.put_into("notice", _"Initiative successfully created")
