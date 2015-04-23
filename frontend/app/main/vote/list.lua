@@ -167,7 +167,7 @@ then
 end
 
 
-ui.section( function()
+ui.section('section-vote', function()
 
   ui.sectionHead( function()
     if preview then
