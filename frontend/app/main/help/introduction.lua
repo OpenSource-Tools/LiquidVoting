@@ -1,4 +1,6 @@
-ui.title(_"Introduction")
+ui.title(function()
+        ui.tag { attr = {class = 'last'}, tag = 'li', content = _"Introduction"}
+end)
 
 -- show the user what can be done
 execute.view { module = "index", view = "_sidebar_whatcanido" }
