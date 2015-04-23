@@ -36,7 +36,7 @@ ui.sidebar( "tab-members", function()
   end )
 end )
 
-ui.sidebar( "tab-whatcanido", function()
+ui.sidebar( "tab tab-admin-cancel", function()
   ui.sidebarHead( function()
     ui.heading { level = 2, content = _"Cancel issue" }
   end )
@@ -57,7 +57,7 @@ ui.sidebar( "tab-whatcanido", function()
   end )
 end )
 
-ui.sidebar("tab-whatcanido", function()
+ui.sidebar("tab tab-admin-policy", function()
   ui.sidebarHead( function()
     ui.heading { level = 2, content = _"Policies" }
   end )
