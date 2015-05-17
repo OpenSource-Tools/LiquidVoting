@@ -88,6 +88,12 @@ for i, unit in ipairs(units) do
           if area.subscribed then
                   class = class .. " subscribed"
           end
+          if member then
+              local delegation = Delegation:by_pk(member.id, nil, area.id, nil)
+              if delegation then
+                      class = class .. ' delegated'
+              end
+          end
           class = class .. (not area.subscribed and " disabled" or "")
           
           ui.tag { tag = "div", attr = { class = class }, content = function ()
@@ -108,6 +114,11 @@ for i, unit in ipairs(units) do
               local delegation = Delegation:by_pk(member.id, nil, area.id, nil)
         
               if delegation then
+                  ui.i { attr = { class ='fa fa-hand-o-right tooltip' }, content = function()
+                          ui.tag { tag = 'span', content = function()
+                                  ui.tag { tag = 'span', content = _("You delegated this subject area") }
+                          end}
+                  end}
                 ui.link { 
                   module = "delegation", view = "show", params = {
                     area_id = area.id
