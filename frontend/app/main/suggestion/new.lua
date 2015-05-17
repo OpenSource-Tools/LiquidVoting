@@ -35,7 +35,16 @@ ui.form{
           value = _"You are currently not supporting this initiative directly. By adding suggestions to this initiative you will automatically become a potential supporter."
         }
       end
-      ui.field.text{ label = _"A short title (80 chars max)", name = "name" }
+      slot.put("(max. 140 chars, <span id='charcount-suggestion-new'>140</span> left)")
+      ui.field.text{
+              attr = {
+                      id = '_suggestion_title',
+                      style = "width: 100%;",
+                      maxlength = 140,
+                      onkeyup = [[$('span#charcount-suggestion-new').html( 140-$('#_suggestion_title').val().length);]]
+              },
+              name  = "name",
+      }
       
       if not config.enforce_formatting_engine then
         ui.field.select{

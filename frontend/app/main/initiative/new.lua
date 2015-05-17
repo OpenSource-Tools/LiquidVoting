@@ -163,7 +163,7 @@ ui.form{
                                                         end
                                                 end
                                                 slot.put("<br />")
-                                                ui.heading { level = 2, content = _"What is the goal of your issue?" }
+                                                ui.heading { level = 2, content = _("What is the goal of your issue?") }
                                                 slot.put("(max. 140 chars, <span id='charcount-issue'>140</span> left)")
                                                 ui.field.text{
                                                         attr = {
