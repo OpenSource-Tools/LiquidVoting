@@ -3,9 +3,10 @@ local member = param.get("member", "table")
 
 
 local subscribed = area.delegation_info.own_participation
+local delegated  = area.delegation_info.first_trustee_id
 local class = 'area'
-if subscribed then class = class .. ' subscribed'
-end
+if subscribed then class = class .. ' subscribed' end
+if delegated then class = class .. ' delegated' end
 
 ui.title ( function ()
 
