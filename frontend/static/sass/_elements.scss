@@ -1,4 +1,12 @@
-.btn {
+.alink {
+	color: $belize-hole;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.btn2 {
 	padding: 4px 6px;
 	// background-color: $color1;
 	display: inline-block;
@@ -13,7 +21,7 @@
 
 .btn-support {
 
-	@extend .btn;
+	@extend .btn2;
 	a {
 		display: none;
 	}
@@ -65,7 +73,7 @@
 		position: absolute;
 		top: 20px;
 		right: 20px;
-		@extend .btn;
+		@extend .btn2;
 		visibility: visible;
 	}
 }

@@ -1,0 +1,27 @@
+.main_outer {
+	display: inline-block;
+	float: right;
+    width: 730px;
+
+    .main {
+	}
+}
+
+@media (max-width: $screenTablet) {
+    .main_outer {
+	    width: 70%;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: $screenMobile) {
+    .main_outer {
+    	position: relative;
+    	// top: 0;
+    	// left: 0;
+    	// max-width: none;
+    	float: none;
+        width: 100%;
+        margin: 0;
+    }
+}

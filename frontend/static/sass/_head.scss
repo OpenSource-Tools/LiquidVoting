@@ -1,0 +1,195 @@
+$head-height: 60px;
+
+.head_outer {
+    background-color: $nimd;
+    color: #fff;
+    line-height: $head-height;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+
+    .head {
+        position: relative;
+        margin: 0 auto;
+        max-width: $width;
+        line-height: inherit;
+
+        a {
+            line-height: inherit;
+            color: #FFF;
+        }
+
+        a.logo {
+            line-height: inherit;
+            display: inline-block;
+            @include font-size(18px);
+
+            .liquid, .feedback {
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+        }
+
+        .nav {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: inline-block;
+
+            input[name=q] {
+                position: absolute;
+                top: 16px;
+                right: 380px;
+                width: 350px;
+                @include border-radius(4px);
+                @include font-size(14px);
+                padding: 6px 10px 5px 10px;
+                color: #666;
+                background-color: #FFF;
+                border: none;
+                line-height: 1;
+                outline: none;
+            }
+
+            > a:not(.notifications) {
+                margin-right: 50px;
+
+                &:first-child {
+                    margin-right: 20px;
+                }
+            }
+
+            #member_menu {
+                margin-right: 100px;
+                line-height: $head-height;
+
+                a { 
+                    @include font-size(14px);
+                    text-decoration: none;
+
+                    span {
+                        display: inline-block;
+                        padding: 0 10px;
+                    }
+                }
+            }
+
+            .help {
+                position: absolute;
+                right: 0;
+                top: 0;
+                @include font-size(24px);
+
+                a i {
+                    line-height: $head-height;
+                }
+
+            }
+
+            a.notifications {
+                position: absolute;
+                text-decoration: none;
+                top: 22px;
+                right: 50px;
+
+                .count {
+                    position: absolute;
+                    color: #FFF;
+                    top: -29px;
+                    right: -9px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $screenTablet) {
+    .head_outer {
+        .head {
+            width: 100%;
+            padding: 0 10px;
+
+            .nav {
+                right: 10px;
+
+                input[name=q] {
+                    width: 300px;
+                    right: 260px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $screenMobile) {
+    .head_outer {
+        width: 100%;
+        height: 100px;
+        line-height: 1;
+
+        .head {
+            padding: 0;
+
+            a.logo {
+                position: absolute;
+                top: 5px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav {
+                position: absolute;
+                top: 30px;
+                left: 0;
+                right: 0;
+                width: 100%;
+
+                #member_menu {
+                    margin: 0;
+                    line-height: 1;
+                    top: 34px;
+                    left: 10px;
+                    position: absolute;
+                }
+
+                .help {
+                    position: absolute;
+                    right: 12px;
+                    line-height: 1;
+                    top: 37px;
+
+                    a i {
+                        line-height: 1;
+                    }
+                }
+
+                a.notifications {
+                    top: 42px;
+                    // right: 40px;
+
+                    .count {
+                        top: -9px;
+                    }
+                }
+
+                form.inline {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 10px;
+                    right: 10px;
+                }
+
+                input[name=q] {
+                    width: 100%;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    right: 0px;
+                }
+            }
+        }
+    }
+}
+

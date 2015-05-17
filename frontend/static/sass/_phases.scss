@@ -1,22 +1,26 @@
 $process-height       : 60px;
-$process-border-width : 1px;
-$process-border-color : #CCC;
+// $process-border-width : 1px;
+// $process-border-color : #CCC;
 $process-ratio        : 3;
-$process-background   : #CCC;
-$process-color        : lighten($color2, 7%);
-$process-current      : $color2;
+// $process-background   : #CCC;
+$process-color        : rgba(255,255,255,0.5);
+$process-current      : rgba(255,255,255,0.9);
+$process-finished     : rgba(255,255,255,0.5);
 $process-radius       : 6px;
+
 
 .phases {
     position: absolute;
-    top: 105px;
-    margin-left: 270px;
+    top: 60px;
+    margin-left: 290px;
+    z-index: 10;
+    background-color: transparent !important;
 
     .phase {
         position: relative;
         display: inline-block;
         text-align: center;
-        width: 166px;
+        width: 155px;
         height: $process-height;
         font-size: 17px;
         background-color: $process-color;
@@ -27,7 +31,7 @@ $process-radius       : 6px;
             @include border-radius-separate($process-radius, 0, $process-radius, 0);
         }
 
-        &:last-child {
+        &:nth-child(4) {
             @include border-radius-separate(0, $process-radius, 0, $process-radius);
 
             .tooltip {
@@ -65,7 +69,20 @@ $process-radius       : 6px;
         .status, .time {
             bottom: 11px;
             @include font-size(13px);
-            color: #666;
+            color: #333;
+        }
+
+        &.finished {
+            background-color: $process-finished;
+
+            &:after {
+                border-left-color: $process-finished;
+            }
+
+            &:before {
+                border-top-color: $process-finished;
+                border-bottom-color: $process-finished;
+            }
         }
 
         &.current {
@@ -137,10 +154,57 @@ $process-radius       : 6px;
             }
         }
         
-        &:last-child {
+        &:nth-child(4) {
             &:after {
                 display: none;
             }
+        }
+    }
+}
+
+@media (max-width: $screenTablet) {
+    .phases {
+        margin-left: 30%;
+        width: 67%;
+        // top: 60px;
+        // margin: 0;
+
+        .phase {
+            width: 20%;
+
+            .status, .time, .text {
+                padding-left: 2px;
+            }
+
+            .tooltip {
+                display: none;
+            }
+        }
+    }
+}
+
+
+@media (max-width: $screenMobile) {
+    .phases {
+
+        width: 100%;
+        top: 60px;
+        margin: 0;
+
+        .phase {
+
+            margin-right: 0;
+            @include border-radius(0px);
+            // position: relative;
+            // display: inline-block;
+            // text-align: center;
+            width: 25vw;
+            margin: 0;
+            // height: $process-height;
+            // font-size: 17px;
+            // background-color: $process-color;
+            // padding-left: 10px;
+            // margin-right: 22px;
         }
     }
 }

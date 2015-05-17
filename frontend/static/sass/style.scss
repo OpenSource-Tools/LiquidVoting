@@ -1,3 +1,5 @@
+$nimd: #EB8B2D;
+
 $turquoise:     #1abc9c;
 $green-sea:     #16a085;
 $emerald:       #2ecc71;
@@ -21,11 +23,19 @@ $asbestos:      #7f8c8d;
 $flamingo:      #f20ca2;
 $fuchsia:       #bf1784;
 
+
 $color1: #3F99D1;  //63,153,209
 $color2: $silver; //#c3c9cb;
 $color3: rgb(143, 186, 209);
 $text: #333;
 $width: 1000px;
+$width1: 740px;
+
+$widthTablet: 740px;
+
+$screenMobile: 768px;
+$screenTablet: 1020px;
+
 $background: #eaeced; //rgba(48,64,77,0.1);
 
 $issue-bg: $color2;
@@ -40,10 +50,23 @@ $text-light: #666;
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+// @media (min-width: @screen-sm-min) { ... }
+
+/* Medium devices (desktops, 992px and up) */
+// @media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) */
+// @media (min-width: @screen-lg-min) { ... }
+
 @import "vendor/mixins.scss";
 @import "vendor/reset.scss";
 @import "tooltip.scss";
-@import "progress.scss";
+@import "phases.scss";
 @import "elements.scss";
 
 @import "notification.scss";
