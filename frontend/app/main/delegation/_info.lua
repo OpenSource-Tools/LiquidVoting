@@ -184,22 +184,22 @@ if info.own_participation or info.first_trustee_id then
   if app.session.member_id == member.id then
 
           if voting_member_id  then
-                  ui.i {
-                          attr = {class = 'fa fa-hand-o-right tooltip'}, content = function()
-                                  ui.tag{ tag = 'span', content = function()
-                                          ui.tag{ tag = 'span', content = tt}
-                                  end}
-                          end
-                  }
+                  --ui.i {
+                  --        attr = {class = 'fa fa-hand-o-right tooltip'}, content = function()
+                  --                ui.tag{ tag = 'span', content = function()
+                  --                        ui.tag{ tag = 'span', content = tt}
+                  --                end}
+                  --        end
+                  --}
 
           else
-                  ui.i {
-                          attr = {class = 'fa fa-hand-o-right tooltip'}, content = function()
-                                  ui.tag{ tag = 'span', content = function()
-                                          ui.tag{ tag = 'span', content = tt}
-                                  end}
-                          end
-                  }
+                  --ui.i {
+                  --        attr = {class = 'fa fa-hand-o-right tooltip'}, content = function()
+                  --                ui.tag{ tag = 'span', content = function()
+                  --                        ui.tag{ tag = 'span', content = tt}
+                  --                end}
+                  --        end
+                  --}
           end
   else
           ui.container{
