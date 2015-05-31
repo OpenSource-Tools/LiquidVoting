@@ -124,7 +124,7 @@ local function process_line(line)
   end
 end
 
-ui.section( function()
+ui.section("section-draft-compare", function()
   ui.sectionHead( function()
     ui.link{
       module = "initiative", view = "show", id = initiative.id,

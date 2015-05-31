@@ -49,7 +49,7 @@ ui.sectionHead( "initiativeInfo", function ()
       
       end 
       
-      slot.put ( "<br />" )
+      -- slot.put ( "<br />" )
       
       execute.view {
         module = "initiative", view = "_bargraph", params = {
@@ -68,7 +68,7 @@ ui.sectionHead( "initiativeInfo", function ()
           if initiative.issue.member_info.direct_voted then
             --ui.image { attr = { class = "icon48 right" }, static = "icons/48/voted_ok.png" }
             ui.tag { content = _"You have voted" }
-            slot.put("<br />")
+            -- slot.put("<br />")
             if not initiative.issue.closed then
               ui.link {
                 module = "vote", view = "list", 
@@ -142,7 +142,7 @@ ui.sectionHead( "initiativeInfo", function ()
       
     end
     
-    slot.put("<br style='clear: both;'/>")
+    -- slot.put("<br style='clear: both;'/>")
 
     ui.container {
       attr = { class = "initiators" },

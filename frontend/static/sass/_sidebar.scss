@@ -515,6 +515,10 @@
     .tab-members {
         background-color: $tab-bg;
 
+        .ui_paginate_content > .row {
+            @extend .sidebar-member;
+        }
+
         > .row {
             padding: 5px 10px;
             @extend .sidebar-member;
