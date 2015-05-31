@@ -141,6 +141,10 @@
         display: none;
     }
 
+    .result {
+        display: none;
+    }
+
     .ui_filter_content {
     	margin-top: 0px;
     }
@@ -277,7 +281,7 @@
     			display: block;
     			width: 100%;
     			// background-color: rgba(0,0,0,0.1);
-                background-color: $clouds;
+                background-color: $btn-bg;
     			padding: 6px 10px 6px 35px;
     			color: #333;
     			margin: 5px 0;
@@ -509,7 +513,7 @@
     }
 
     .tab-members {
-        background-color: $clouds;
+        background-color: $tab-bg;
 
         > .row {
             padding: 5px 10px;
@@ -551,7 +555,7 @@
     }
 
     .tab-sidebar-units, .tab-unit-subjects {
-        background-color: $clouds;
+        background-color: $tab-bg;
 
         .delegation_arrow {
             display: none;

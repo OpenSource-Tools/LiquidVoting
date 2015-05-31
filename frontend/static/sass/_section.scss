@@ -9,6 +9,10 @@ td, th  {
     padding: 5px 20px;
 }
 
+// .initiative_pie {
+//     display: none;
+// }
+
 .e-initiative {
     position: relative;
     background-color: #FFF;
@@ -59,7 +63,7 @@ td, th  {
     position: relative;
     margin-bottom: 50px;
     padding: 15px 0px 20px 0px;
-    background-color: $belize-hole;
+    background-color: $issue-bg;
     @include border-radius(4px);
     outline: none;
 
@@ -338,6 +342,15 @@ select {
         padding: 150px 0px 20px 0px;
         z-index: 2;
 
+        .admitted_info {
+            font-size: 14px;
+            padding: 0 20px;
+
+            h1 {
+                margin: 5px 0;
+            }
+        }
+
         .btn-interest {
         	position: absolute;
         	top: 0px;
@@ -382,7 +395,7 @@ select {
 
                 &.active {
                     color: #FFF;
-                    background-color: $belize-hole;
+                    background-color: $issue-bg;
                 }
             }
         }
@@ -417,7 +430,7 @@ select {
     &.section-initiative, &.section-drafthistory {
 
         padding: 170px 20px 20px 20px;
-        background-color: $belize-hole;
+        background-color: $issue-bg;
 
         > .sectionHead {
             background-color: #FFF;
