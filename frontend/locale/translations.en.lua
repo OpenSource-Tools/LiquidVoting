@@ -226,7 +226,7 @@ return {
 ["Enter your current password:"] = false;
 ["Enter your new password again please:"] = false;
 ["Enter your proposal and/or reasons"] = false;
-["Enter your proposal and/or reasons:"] = false;
+-- ["Enter your proposal and/or reasons:"] = false;
 ["Error while converting image. Please note, that only JPG files are supported!"] = false;
 ["Error while updating member, database reported:<br /><br /> (#{errormessage})"] = false;
 ["Etherpad authentication failed"] = false;
@@ -466,7 +466,7 @@ return {
 ["Please choose a name, i.e. your real name or your nick name. This name will be shown to others to identify you."] = false;
 ["Please choose a password and enter it twice. The password is case sensitive."] = false;
 ["Please choose a policy"] = false;
-["Please choose a policy for the new issue:"] = false;
+["Please choose a policy for the new issue:"] = "Please choose a Policy for the new Proposal:";
 ["Please choose an area name"] = false;
 ["Please choose two different versions of the draft to compare"] = false;
 ["Please confirm your email address"] = false;
@@ -980,6 +980,11 @@ return {
 ["you restricted your support by rating suggestions as must or must not"] = false;
 ["you voted"] = false;
 ["What is the goal of your issue?"] = "What is your issue?";
+["Enter a title for your initiative:"] = "Enter a title for your proposal:";
+["Enter your proposal and/or reasons:"] = "Enter your proposal and/or reasons:";
 ["Add a new competing initiative to issue"] = "Add new competing proposal to the goal";
 ["start a new competing initiative"] = "start a new competing proposal";
+["max 140 chars"] = false;
+["left"] = false;
+
 }
