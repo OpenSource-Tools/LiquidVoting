@@ -561,11 +561,27 @@
     .tab-sidebar-units, .tab-unit-subjects {
         background-color: $tab-bg;
 
+        h2 {
+            position: relative            
+        }
+
         .delegation_arrow {
             display: none;
         }
-        .delegation_info {
-            display: none;
+        a.delegation_info {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+
+            // display: none;
+            img {
+                display: none;
+            }
+
+            &:before {
+                @extend .fa;
+                content: "\f0a4";
+            }
         }
         .member_image {
             width: 20px;
