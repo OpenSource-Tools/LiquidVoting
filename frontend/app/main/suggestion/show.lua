@@ -55,7 +55,7 @@ execute.view {
 }
 
 
-ui.section( function()
+ui.section("section-sugestion-show", function()
   ui.sectionHead( function()
     ui.link{
       module = "initiative", view = "show", id = initiative.id,

@@ -67,9 +67,15 @@ ui.title ( function ()
     supported = info.supported
     klass = "initiative last"
     if supported then klass = klass .. " supported" end
-    ui.tag{ tag = 'li', attr = { class = klass },
-      content = initiative.display_name
+
+    ui.tag { tag = 'li', attr = { class = klass }, content = function()
+          ui.tag{ tag = 'span', content = initiative.display_name }
+        end
     }
+
+    -- ui.tag{ tag = 'li', attr = { class = klass },
+    --   content = initiative.display_name
+    -- }
   end
   
 end ) -- ui.title

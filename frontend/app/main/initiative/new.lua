@@ -74,12 +74,15 @@ ui.form{
                                         ui.heading{ level = 1, content = encode.html(param.get("name")) }
                                         if not issue then
                                                 ui.container { content = policy.name }
-                                                ui.heading{ level = 1, content = "Goal:" .. encode.html(param.get("issue_name")) }
+                                                ui.heading{ level = 1, content = encode.html(param.get("issue_name")) }
                                         end
                                         if param.get("free_timing") then
                                                 ui.container { content = param.get("free_timing") }
                                         end
-                                        slot.put("<br />")
+                                end)
+                                ui.sectionRow( function()
+
+                                        -- slot.put("<br />")
 
                                         ui.field.hidden{ name = "formatting_engine", value = param.get("formatting_engine") }
                                         ui.field.hidden{ name = "policy_id", value = param.get("policy_id") }
@@ -101,7 +104,7 @@ ui.form{
                                                         slot.put(format.wiki_text(param.get("draft"), formatting_engine))
                                                 end
                                         }
-                                        slot.put("<br />")
+                                        -- slot.put("<br />")
 
                                         ui.tag{
                                                 tag = "input",
@@ -112,19 +115,19 @@ ui.form{
                                                 },
                                                 content = ""
                                         }
-                                        slot.put("<br />")
-                                        slot.put("<br />")
+                                        -- slot.put("<br />")
+                                        -- slot.put("<br />")
                                         ui.tag{
                                                 tag = "input",
                                                 attr = {
                                                         type = "submit",
                                                         name = "edit",
-                                                        class = "btn-link",
+                                                        class = "btn btn-link",
                                                         value = _'Edit again'
                                                 },
                                                 content = ""
                                         }
-                                        slot.put(" | ")
+                                        -- slot.put(" | ")
                                         if issue then
                                                 ui.link{ content = _"Cancel", module = "issue", view = "show", id = issue.id }
                                         else
@@ -140,6 +143,7 @@ ui.form{
                         if preview then
                                 _content = _"Edit again"
                         elseif issue_id then
+                                _class = 'section-initiative-new'
                                 _content = _"Add a new competing initiative to issue"
                         else
                                 _class = 'section-initiative-new'
@@ -152,8 +156,8 @@ ui.form{
                                 end )
                                 ui.sectionRow( function()
                                         if not preview and not issue_id then
-                                                ui.container { attr = { class = "section" }, content = _"Before creating a new issue, please check any existant issues before, if the topic is already in discussion." }
-                                                slot.put("<br />")
+                                                ui.container { attr = { class = "info" }, content = _"Before creating a new issue, please check any existant issues before, if the topic is already in discussion." }
+                                                -- slot.put("<br />")
                                         end
                                         if not issue_id then
                                                 local tmp = { { id = -1, name = "" } }
@@ -162,9 +166,11 @@ ui.form{
                                                                 tmp[#tmp+1] = allowed_policy
                                                         end
                                                 end
-                                                slot.put("<br />")
+                                                -- slot.put("<br />")
                                                 ui.heading { level = 2, content = _("What is the goal of your issue?") }
-                                                slot.put("(max. 140 chars, <span id='charcount-issue'>140</span> left)")
+                                                -- ui.container { attr = { class = "chars" }, content = _"max. 140 chars" .. ", <span id='charcount-issue'>140</span> " .. _"left" }
+                                                slot.put("<div class='chars'>" .. _"max. 140 chars" .. ", <span id='charcount-issue'>140</span> " .. _"left" .. "</div>")
+                                                -- slot.put("(max. 140 chars, <span id='charcount-issue'>140</span> left)")
                                                 ui.field.text{
                                                         attr = {
                                                                 id = '_issue_title',
@@ -211,13 +217,14 @@ ui.form{
                                         end
 
                                         if issue and issue.policy.polling and app.session.member:has_polling_right_for_unit_id(area.unit_id) then
-                                                slot.put("<br />")
+                                                -- slot.put("<br />")
                                                 ui.field.boolean{ name = "polling", label = _"No admission needed", value = polling }
                                         end
 
-                                        slot.put("<br />")
+                                        -- slot.put("<br />")
                                         ui.heading { level = 2, content = _"Enter a title for your initiative:" }
-                                        slot.put("(max. 140 chars, <span id='charcount'>140</span> left)")
+                                        -- slot.put("(max. 140 chars, <span id='charcount'>140</span> left)")
+                                        slot.put("<div class='chars'>" .. _"max. 140 chars" .. ", <span id='charcount'>140</span> " .. _"left" .. "</div>")
                                         ui.field.text{
                                                 attr = {
                                                         id = '_initiative_name',
@@ -230,10 +237,10 @@ ui.form{
                                                 name  = "name",
                                                 value = param.get("name")
                                         }
-                                        ui.container { content = _"The title is the figurehead of your iniative. It should be short but meaningful! As others identifies your initiative by this title, you cannot change it later!" }
+                                        ui.container { attr = { class = "info" }, content = _"The title is the figurehead of your iniative. It should be short but meaningful! As others identifies your initiative by this title, you cannot change it later!" }
 
                                         if not config.enforce_formatting_engine then
-                                                slot.put("<br />")
+                                                -- slot.put("<br />")
                                                 ui.heading { level = 4, content = _"Choose a formatting engine:" }
                                                 ui.field.select{
                                                         name = "formatting_engine",
@@ -244,16 +251,17 @@ ui.form{
                                                         value = param.get("formatting_engine")
                                                 }
                                         end
-                                        slot.put("<br />")
+                                        -- slot.put("<br />")
 
-                                        slot.put("<h2>Enter your proposal and/or reasons: (")
+                                        -- slot.put("<h2>Enter your proposal and/or reasons: (")
+                                        ui.heading { level = 2, content = _("Enter your proposal and/or reasons:") }
                                         slot.put(
-                                        ui.link{ content = "examples",
+                                        ui.link{ attr = { class = "chars" }, content = _"Examples",
                                         static = 'examples.html',
                                         attr = { target = '_BLANK' }
                                 }
                                 )
-                                slot.put(")</h2>")
+                                -- slot.put(")</h2>")
                                 ui.field.text{
                                         name = "draft",
                                         multiline = true, 
@@ -261,11 +269,11 @@ ui.form{
                                         value = param.get("draft")
                                 }
                                 if not issue or issue.state == "admission" or issue.state == "discussion" then
-                                        ui.container { content = _"You can change your text again anytime during admission and discussion phase" }
+                                        ui.container { attr = { class = "info" }, content = _"You can change your text again anytime during admission and discussion phase" }
                                 else
-                                        ui.container { content = _"You cannot change your text again later, because this issue is already in verfication phase!" }
+                                        ui.container { attr = { class = "info" }, content = _"You cannot change your text again later, because this issue is already in verfication phase!" }
                                 end
-                                slot.put("<br />")
+                                -- slot.put("<br />")
                                 ui.tag{
                                         tag = "input",
                                         attr = {
@@ -276,13 +284,13 @@ ui.form{
                                         },
                                         content = ""
                                 }
-                                slot.put("<br />")
-                                slot.put("<br />")
+                                -- slot.put("<br />")
+                                -- slot.put("<br />")
 
                                 if issue then
                                         ui.link{ content = _"Cancel", module = "issue", view = "show", id = issue.id }
                                 else
-                                        ui.link{ content = _"Cancel", module = "area", view = "show", id = area.id }
+                                        ui.link{ content = _"Cancel", module = "area", view = "show", id = area.id, class="lnk" }
                                 end
                         end )
                 end )

@@ -206,11 +206,17 @@ local function doit()
           class = class .. " negative"
         end
 
+        -- KLAAS
+        if issue.state == "finished_with_winner" then
+          class = class .. " positive"
+        end
+        -- 
+
         if mode == "timeline" then
           ui.container{ attr = { class = class }, content = function ()
             ui.tag { content = event_name }
             slot.put ( " " )
-            ui.tag{ attr = { class = "event_time" }, content = days_ago_text }
+            ui.tag{ attr = { class = "event_timex" }, content = days_ago_text }
           end }
         end
 
@@ -260,17 +266,17 @@ local function doit()
             slot.put ( " " )
             ui.tag{
 		attr = {
-			class = "event_time"
+			class = "event_timex"
 		},
-		--content = days_ago_text
-		content = issue.end_time
+		content = days_ago_text
+		-- content = issue.end_time
 		}
           end }
         elseif mode == "timeline"
           and not for_issue
           and event.event ~= "issue_state_changed"
         then
-          slot.put("<br />")
+          -- slot.put("<br />")
         end
 
         if event.suggestion_id then

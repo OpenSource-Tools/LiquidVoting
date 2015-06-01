@@ -69,7 +69,7 @@ ui.form{
           end
         }
 
-        slot.put("<br />")
+        -- slot.put("<br />")
         ui.tag{
           tag = "input",
           attr = {
@@ -79,8 +79,8 @@ ui.form{
           },
           content = ""
         }
-        slot.put("<br />")
-        slot.put("<br />")
+        -- slot.put("<br />")
+        -- slot.put("<br />")
 
         ui.tag{
           tag = "input",
@@ -92,7 +92,7 @@ ui.form{
           },
           content = ""
         }
-        slot.put(" | ")
+        -- slot.put(" | ")
         ui.link{
           content = _"Cancel",
           module = "initiative",
@@ -138,8 +138,8 @@ ui.form{
           },
           content = ""
         }
-        slot.put("<br />")
-        slot.put("<br />")
+        -- slot.put("<br />")
+        -- slot.put("<br />")
         
         ui.link{
           content = _"Cancel",
