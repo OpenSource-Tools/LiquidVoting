@@ -40,6 +40,12 @@ $bread-arrow:           5px;
     left: 0;
     width: 100%;
 
+    .tooltip > span > span {
+        width: 140px;
+        margin-left: -70px;
+    }
+
+
     .slot_title {
         max-width: $width;
         height: $bread-height;
@@ -63,6 +69,10 @@ $bread-arrow:           5px;
 
                 &:last-child {
                     margin-right: 15px !important;
+                }
+
+                > i {
+                    margin-left: 8px;
                 }
             // }
         	// li:not(.home):not(.unit):not(.area):not(.issue):not(.last):last-child {
@@ -120,8 +130,20 @@ $bread-arrow:           5px;
                     @extend .fa;
                     content: "\f0b1";
                     margin-right: $bread-arrow;
-
                 }
+
+                &.issue.interested a span:after {
+                    @extend .fa;
+                    content: "\f0a2";
+                    margin-left: $bread-arrow;
+                }
+                &.initiative.supported span:after {
+                    @extend .fa;
+                    content: "\f087";
+                    margin-left: $bread-arrow;
+                }
+                
+
 
                 // &.home > a {
                 &.home {

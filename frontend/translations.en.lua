@@ -66,6 +66,7 @@ return {
 ["Account history"] = false;
 ["Activated"] = false;
 ["Active?"] = false;
+["Add a new competing initiative to issue"] = "Add a new competing proposal to issue";
 ["Add a new suggestion for improvement"] = false;
 ["Address"] = false;
 ["Admin?"] = false;
@@ -369,7 +370,7 @@ return {
 ["Login name request"] = false;
 ["Login-Name: "] = false;
 ["Logout successful"] = false;
-["Make your choice by placing the initiatives"] = "Make your choice by placing the proposals";
+["Make your choice by placing the initiatives"] = false;
 ["Member"] = false;
 ["Member has been removed from initiators"] = false;
 ["Member has been removed from your contacts"] = false;
@@ -981,9 +982,9 @@ return {
 ["What is the goal of your issue?"] = "What is your issue?";
 ["Enter a title for your initiative:"] = "Enter a title for your proposal:";
 ["Enter your proposal and/or reasons:"] = "Enter your proposal and/or reasons:";
-["Add a new competing initiative to issue"] = "Add new competing proposal to the issue";
+["Add a new competing initiative to issue"] = "Add new competing proposal to the goal";
 ["start a new competing initiative"] = "start a new competing proposal";
 ["max 140 chars"] = false;
 ["left"] = false;
-["Examples"] = false;
+
 }

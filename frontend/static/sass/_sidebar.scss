@@ -141,6 +141,10 @@
         display: none;
     }
 
+    .result {
+        display: none;
+    }
+
     .ui_filter_content {
     	margin-top: 0px;
     }
@@ -219,18 +223,24 @@
         }
 
         ul.initiatives {
-            padding: 0; //0 10px 10px 10px;
+            padding: 0 5px; //0 10px 10px 10px;
 
             li {
                 padding: 0;
                 margin-bottom: 5px;
-
                 &.highlighted {
                     .initiative {
-                        @include border-radius(0px);
                         background-color: $belize-hole;
                         color: #FFF;
+                    }
+                }
+
+                // &.highlighted {
+                    .initiative {
+                        @include border-radius(0px);
+                        // background-color: $belize-hole;
                         padding: 0 10px;
+                        color: #333;
 
                         span.initiative_name {
                              a {
@@ -248,7 +258,7 @@
                             }
                         }
                     }
-                }
+                // }
 
                 .initiative {
                     line-height: 30px;
@@ -277,7 +287,7 @@
     			display: block;
     			width: 100%;
     			// background-color: rgba(0,0,0,0.1);
-                background-color: $clouds;
+                background-color: $btn-bg;
     			padding: 6px 10px 6px 35px;
     			color: #333;
     			margin: 5px 0;
@@ -493,6 +503,17 @@
                     content: "\f05e";
                 }
             }
+            a.voteupdate {
+                @extend .btn-red;
+                &:before {
+                    content: "\f0a6";
+                }                
+            }
+            a.changevote {
+                &:before {
+                    content: "\f0a6";
+                }                
+            }
     	}
     }
 
@@ -509,7 +530,11 @@
     }
 
     .tab-members {
-        background-color: $clouds;
+        background-color: $tab-bg;
+
+        .ui_paginate_content > .row {
+            @extend .sidebar-member;
+        }
 
         > .row {
             padding: 5px 10px;
@@ -551,13 +576,29 @@
     }
 
     .tab-sidebar-units, .tab-unit-subjects {
-        background-color: $clouds;
+        background-color: $tab-bg;
+
+        h2 {
+            position: relative            
+        }
 
         .delegation_arrow {
             display: none;
         }
-        .delegation_info {
-            display: none;
+        a.delegation_info {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+
+            // display: none;
+            img {
+                display: none;
+            }
+
+            &:before {
+                @extend .fa;
+                content: "\f0a4";
+            }
         }
         .member_image {
             width: 20px;

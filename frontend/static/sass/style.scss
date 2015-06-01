@@ -24,7 +24,7 @@ $flamingo:      #f20ca2;
 $fuchsia:       #bf1784;
 
 
-$color1: #3F99D1;  //63,153,209
+$color1: $belize-hole; //#3F99D1;  //63,153,209
 $color2: $silver; //#c3c9cb;
 $color3: rgb(143, 186, 209);
 $text: #333;
@@ -38,7 +38,10 @@ $screenTablet: 1020px;
 
 $background: #eaeced; //rgba(48,64,77,0.1);
 
-$issue-bg: $color2;
+$issue-bg: $concrete;
+$tab-bg: darken($clouds,5%);
+$btn-bg: darken($clouds,5%);
+
 $text-light: #666;
 
 .fa {

@@ -5,9 +5,92 @@ td, th  {
     padding: 3px;
 }
 
-.not_admitted_info {
-    padding: 5px 20px;
+// .not_admitted_info {
+//     padding: 5px 20px;
+// }
+
+.section {
+    img.member_image {
+        @include border-radius(50px);
+        vertical-align: middle;
+        width: 40px;
+        height: 40px;
+    }
 }
+
+
+.admitted_info, .not_admitted_info {
+    font-size: 14px;
+    padding: 20px;
+
+    h1 {
+        margin: 5px 0;
+    }
+}
+
+form.wide.section {
+    padding-top: 130px;
+    .sectionHead {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+}
+
+
+.section-initiative-new, .section-initiative-preview, .section-sugestion-show, .section-draft-compare {
+    padding-top: 130px !important;
+    position: relative !important;
+
+    .sectionHead {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+
+        h1 {
+            @include font-size(22px);
+        }
+    }
+
+    h2 {
+        margin: 10px 0 5px 0;
+    }
+
+    .chars {
+        float: right;
+        margin-top: -20px;
+    }
+}
+
+.section-vote {
+    background-color: $issue-bg !important;
+
+    .sectionHead {
+        h1 {
+            @include font-size(22px);
+        }
+    }
+
+}
+
+.section-draft-compare {
+    .diff {
+        .diff_unchanged {
+
+        }
+        .diff_removed {
+            color: #c0392b;
+        }
+        .diff_added {
+            color: #27ae60;
+        }
+    }
+}
+
+
+// .initiative_pie {
+//     display: none;
+// }
 
 .e-initiative {
     position: relative;
@@ -59,7 +142,7 @@ td, th  {
     position: relative;
     margin-bottom: 50px;
     padding: 15px 0px 20px 0px;
-    background-color: $belize-hole;
+    background-color: $issue-bg;
     @include border-radius(4px);
     outline: none;
 
@@ -71,7 +154,7 @@ ul.initiatives {
     }
 
     > .result {
-        padding: 0 20px 10px 20px;
+        padding: 15px 20px 5px 20px;
     }
 
     li {
@@ -170,6 +253,12 @@ select {
     padding: 0;
 }
 
+.section-suggest {
+    textarea { 
+        width: 100% !important;
+    }
+}
+
 .section:not(.row):not(.events) {
     position: relative;
     background-color: $clouds;
@@ -203,6 +292,10 @@ select {
 
         .row.event {
             @extend .e-issue;
+
+            .initiative_pie {
+                display: none;
+            }
 
             .issue_context {
                 padding: 45px 20px 10px 20px;
@@ -321,6 +414,9 @@ select {
                 &.negative {
                     background-color: $alizarin;
                 }
+                &.positive {
+                    background-color: $nephritis;
+                }
 
                 .event_time {
                 }
@@ -382,7 +478,7 @@ select {
 
                 &.active {
                     color: #FFF;
-                    background-color: $belize-hole;
+                    background-color: $issue-bg;
                 }
             }
         }
@@ -417,7 +513,7 @@ select {
     &.section-initiative, &.section-drafthistory {
 
         padding: 170px 20px 20px 20px;
-        background-color: $belize-hole;
+        background-color: $issue-bg;
 
         > .sectionHead {
             background-color: #FFF;
@@ -432,18 +528,18 @@ select {
     &.section-initiative-new {
 
         position: relative;
-        margin-top: 30px;
+        // margin-top: 30px;
 
         br:first-child {
             display: none;
         }
 
-        .sectionHead {
-            position: absolute;
-            top: -30px;
-            left: 0;
-            @include font-size(18px);
-        }
+        // .sectionHead {
+        //     position: absolute;
+        //     top: -30px;
+        //     left: 0;
+        //     @include font-size(18px);
+        // }
 
 
         > .row {
@@ -453,6 +549,12 @@ select {
     }
 
     &.section-initiative, &.section-initiative-new, &.section-drafthistory {
+
+        .info {
+            margin: 10px 0;
+            color: #999;
+            font-size: 13px;
+        }
 
         h1 {
             @include font-size(20px);
@@ -473,7 +575,7 @@ select {
             .bargraph {
                 position: absolute;
                 top: 55px;
-                right: -592px;
+                right: -502px;
             }
         }
 
@@ -506,6 +608,7 @@ select {
 
     &.suggestions {
         margin: 20px 0 40px 0;
+        padding-bottom: 40px;
 
 
         .sectionHead {
@@ -517,20 +620,41 @@ select {
             }
         }
 
+        h2.suggestionHead {
+            margin: 10px 0;
+
+        }
+
         .suggestion {
             position: relative;
-            margin-top: 50px;
+            margin-top: 70px;
             background-color: rgba(255,255,255,0.7);
             padding: 10px 20px;
             // @include border-radius(10px);
             // border: 1px solid $color2;
 
+            &:first-child {
+                margin-top: 50px;
+            }
+
             .suggestion-rating {
                 position: absolute;
                 right: 0px;
-                top: -28px;
+                top: -32px;
+                background-color: #dde4e6;
+                padding: 4px;
+                padding-right: 6px;
+
             }
 
+            .microAvatar img {
+                margin-right: 10px;
+            }
+
+            .rating {
+              padding: 5px 10px;
+              background-color: #ecf0f1;
+            }
             a.suggestion-more, a.suggestion-less, a.suggestion-details {
                 position: absolute;
                 bottom: -22px;
@@ -724,10 +848,15 @@ select {
 
     &.section-history {
         padding-bottom: 0;
-        background-color: $belize-hole;
+        background-color: $issue-bg;
 
         .ui_filter {
             display: none;
+        }
+
+        .initiative_pie {
+            margin: 20px;
+            margin-top: 0;
         }
 
         .event {
