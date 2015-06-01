@@ -101,8 +101,8 @@ ui.sidebar( "phases", function()
           end
           ui.container{ attr = { class = "time event_time" },
             -- content = issue.end_time
+            -- content = issue.state_time_left
             content = time_left
-            -- issue.state_time_left
             -- KLAAS
           }
         elseif current_occured then
