@@ -15,6 +15,15 @@ end
 
 ui.sidebar( "phases", function()
 
+
+
+
+
+
+
+
+
+
   local current_occured = false
   local failed = false
   
@@ -38,6 +47,14 @@ ui.sidebar( "phases", function()
       verification = _"Verification",
       voting = _"Voting"
     }
+
+
+
+
+
+
+
+
     local state_name = state_names[state] or state
     local function quorum_text(policy, quorum)
       local num
@@ -76,13 +93,17 @@ ui.sidebar( "phases", function()
         if state == "admission" then        quorum = quorum_text(issue.policy, 1)
         elseif state == "verification" then quorum = quorum_text(issue.policy, 2)
         end
+
         if current then
           local time_left
           if issue.state_time_left:sub(1,1) ~= "-" then time_left = format.interval_text(issue.state_time_left, { mode = "time_left" })
           else                                          time_left = "phase ends soon"
           end
           ui.container{ attr = { class = "time event_time" },
-            content = issue.end_time
+            -- content = issue.end_time
+            content = time_left
+            -- issue.state_time_left
+            -- KLAAS
           }
         elseif current_occured then
           local phase_duration = issue[state .. "_time"]

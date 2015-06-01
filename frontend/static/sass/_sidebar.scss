@@ -223,18 +223,24 @@
         }
 
         ul.initiatives {
-            padding: 0; //0 10px 10px 10px;
+            padding: 0 5px; //0 10px 10px 10px;
 
             li {
                 padding: 0;
                 margin-bottom: 5px;
-
                 &.highlighted {
                     .initiative {
-                        @include border-radius(0px);
                         background-color: $belize-hole;
                         color: #FFF;
+                    }
+                }
+
+                // &.highlighted {
+                    .initiative {
+                        @include border-radius(0px);
+                        // background-color: $belize-hole;
                         padding: 0 10px;
+                        color: #333;
 
                         span.initiative_name {
                              a {
@@ -252,7 +258,7 @@
                             }
                         }
                     }
-                }
+                // }
 
                 .initiative {
                     line-height: 30px;
@@ -496,6 +502,17 @@
                 &:before {
                     content: "\f05e";
                 }
+            }
+            a.voteupdate {
+                @extend .btn-red;
+                &:before {
+                    content: "\f0a6";
+                }                
+            }
+            a.changevote {
+                &:before {
+                    content: "\f0a6";
+                }                
             }
     	}
     }

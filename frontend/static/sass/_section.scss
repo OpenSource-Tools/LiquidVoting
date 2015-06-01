@@ -38,15 +38,39 @@ form.wide.section {
 }
 
 
-.section-sugestion-show, .section-draft-compare {
+.section-initiative-new, .section-initiative-preview, .section-sugestion-show, .section-draft-compare {
     padding-top: 130px !important;
-    position: !important;
+    position: relative !important;
 
     .sectionHead {
         position: absolute;
         top: 20px;
         left: 20px;
+
+        h1 {
+            @include font-size(22px);
+        }
     }
+
+    h2 {
+        margin: 10px 0 5px 0;
+    }
+
+    .chars {
+        float: right;
+        margin-top: -20px;
+    }
+}
+
+.section-vote {
+    background-color: $issue-bg !important;
+
+    .sectionHead {
+        h1 {
+            @include font-size(22px);
+        }
+    }
+
 }
 
 .section-draft-compare {
@@ -268,6 +292,10 @@ select {
 
         .row.event {
             @extend .e-issue;
+
+            .initiative_pie {
+                display: none;
+            }
 
             .issue_context {
                 padding: 45px 20px 10px 20px;
@@ -497,18 +525,18 @@ select {
     &.section-initiative-new {
 
         position: relative;
-        margin-top: 30px;
+        // margin-top: 30px;
 
         br:first-child {
             display: none;
         }
 
-        .sectionHead {
-            position: absolute;
-            top: -30px;
-            left: 0;
-            @include font-size(18px);
-        }
+        // .sectionHead {
+        //     position: absolute;
+        //     top: -30px;
+        //     left: 0;
+        //     @include font-size(18px);
+        // }
 
 
         > .row {
@@ -518,6 +546,12 @@ select {
     }
 
     &.section-initiative, &.section-initiative-new, &.section-drafthistory {
+
+        .info {
+            margin: 10px 0;
+            color: #999;
+            font-size: 13px;
+        }
 
         h1 {
             @include font-size(20px);

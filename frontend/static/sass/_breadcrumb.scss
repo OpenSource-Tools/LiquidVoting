@@ -130,8 +130,20 @@ $bread-arrow:           5px;
                     @extend .fa;
                     content: "\f0b1";
                     margin-right: $bread-arrow;
-
                 }
+
+                &.issue.interested a span:after {
+                    @extend .fa;
+                    content: "\f0a2";
+                    margin-left: $bread-arrow;
+                }
+                &.initiative.supported span:after {
+                    @extend .fa;
+                    content: "\f164";
+                    margin-left: $bread-arrow;
+                }
+                
+
 
                 // &.home > a {
                 &.home {

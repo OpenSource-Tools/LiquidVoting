@@ -79,6 +79,9 @@ ui.form{
                                         if param.get("free_timing") then
                                                 ui.container { content = param.get("free_timing") }
                                         end
+                                end)
+                                ui.sectionRow( function()
+
                                         -- slot.put("<br />")
 
                                         ui.field.hidden{ name = "formatting_engine", value = param.get("formatting_engine") }
@@ -124,7 +127,7 @@ ui.form{
                                                 },
                                                 content = ""
                                         }
-                                        slot.put(" | ")
+                                        -- slot.put(" | ")
                                         if issue then
                                                 ui.link{ content = _"Cancel", module = "issue", view = "show", id = issue.id }
                                         else
@@ -140,6 +143,7 @@ ui.form{
                         if preview then
                                 _content = _"Edit again"
                         elseif issue_id then
+                                _class = 'section-initiative-new'
                                 _content = _"Add a new competing initiative to issue"
                         else
                                 _class = 'section-initiative-new'
@@ -252,7 +256,7 @@ ui.form{
                                         -- slot.put("<h2>Enter your proposal and/or reasons: (")
                                         ui.heading { level = 2, content = _("Enter your proposal and/or reasons:") }
                                         slot.put(
-                                        ui.link{ content = "(examples)",
+                                        ui.link{ attr = { class = "chars" }, content = _"Examples",
                                         static = 'examples.html',
                                         attr = { target = '_BLANK' }
                                 }
